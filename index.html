@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Karigami — PocketWars</title>
+    <meta
+      name="description"
+      content="Karigami — Indie Games. PocketWars: taktische Action im Pocket-Format."
+    />
+    <meta name="theme-color" content="#0b0f18" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Karigami — PocketWars" />
+    <meta
+      property="og:description"
+      content="Indie Games von Karigami. PocketWars: taktische Action im Pocket-Format."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a class="brand" href="index.html" aria-label="Karigami Startseite">
+          <!-- Ersetze assets/logo.svg mit deinem Logo -->
+          <img
+            src="assets/logo.svg"
+            alt="Karigami Logo"
+            onerror="this.style.display = 'none'"
+          />
+          <span>karigami</span>
+        </a>
+
+        <div class="navlinks">
+          <a href="#pocketwars">PocketWars</a>
+          <a href="#support">Support</a>
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="heroGrid">
+          <div class="card cardPad">
+            <div class="kicker">Indie Games • Mobile</div>
+            <h1>Karigami</h1>
+            <p>
+              Ich baue Games mit Fokus auf <strong>klaren Regeln</strong>,
+              <strong>knackigem Gamefeel</strong> und
+              <strong>sauberem UX</strong>.
+            </p>
+
+            <div class="badges">
+              <div class="badge">⚔️ PocketWars</div>
+              <div class="badge">🎮 Mobile-first</div>
+              <div class="badge">🧠 Taktik & Action</div>
+            </div>
+
+            <div class="ctaRow">
+              <!-- TODO: Store-Links eintragen -->
+              <a
+                class="btn btnPrimary"
+                href="#"
+                aria-label="PocketWars im Store ansehen"
+                >PocketWars im Store</a
+              >
+              <a class="btn btnGhost" href="#support">Kontakt</a>
+            </div>
+
+            <p class="small" style="margin-top: 14px">
+              Business:
+              <a href="mailto:contact@karigami.games">contact@karigami.games</a>
+            </p>
+          </div>
+
+          <aside class="card sidePanel" aria-label="Quick Info">
+            <div class="glow"></div>
+            <div class="kicker">Quick Info</div>
+            <ul class="list">
+              <li><strong>Studio:</strong> Karigami</li>
+              <li><strong>Release:</strong> PocketWars (coming soon)</li>
+              <li><strong>Plattformen:</strong> iOS & Android</li>
+              <li><strong>Monetarisierung:</strong> Ads + In-App-Käufe</li>
+            </ul>
+            <hr class="sep" />
+            <div class="small">
+              Für rechtliche Infos: <a href="impressum.html">Impressum</a> •
+              <a href="datenschutz.html">Datenschutz</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="pocketwars" class="card section">
+        <h2>PocketWars</h2>
+        <p>
+          PocketWars ist ein kompakter Taktik-Brawler: schnelle Entscheidungen,
+          klare Einheitenrollen, und eine UI, die auf Touch optimiert ist.
+        </p>
+
+        <div class="grid2" style="margin-top: 12px">
+          <div
+            class="card"
+            style="
+              background: rgba(15, 23, 42, 0.45);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              border-radius: 18px;
+            "
+          >
+            <div class="cardPad">
+              <div class="kicker">Features</div>
+              <ul style="margin: 12px 0 0; padding-left: 18px">
+                <li>Kurze Sessions</li>
+                <li>Einheiten & Loadouts</li>
+                <li>Progression (cosmetics)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="card"
+            style="
+              background: rgba(15, 23, 42, 0.45);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              border-radius: 18px;
+            "
+          >
+            <div class="cardPad">
+              <div class="kicker">Stores</div>
+              <p class="small">
+                Trage hier deine Links ein, sobald die Store-Seiten live sind:
+              </p>
+              <div class="code">
+                Google Play:
+                https://play.google.com/store/apps/details?id=...<br />
+                App Store: https://apps.apple.com/app/id...
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="support" class="card section">
+        <h2>Support & Kontakt</h2>
+        <p>
+          Bei Fragen oder Problemen: Schreib mir an
+          <a href="mailto:contact@karigami.games">contact@karigami.games</a>.
+        </p>
+        <p class="small">
+          Bitte gib wenn möglich Gerät/OS-Version und eine kurze Beschreibung
+          an.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footerInner">
+        <div>© <span id="y"></span> Karigami</div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="mailto:contact@karigami.games">contact@karigami.games</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

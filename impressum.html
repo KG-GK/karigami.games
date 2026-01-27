@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Impressum — Karigami</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <img
+            src="assets/logo.svg"
+            alt="Karigami Logo"
+            onerror="this.style.display = 'none'"
+          />
+          <span>karigami</span>
+        </a>
+        <div class="navlinks">
+          <a href="index.html#pocketwars">PocketWars</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container legal">
+      <div class="card cardPad">
+        <h1>Impressum</h1>
+        <p class="small">Angaben gemäß § 5 DDG</p>
+
+        <h2>Anbieter</h2>
+        <p>
+          <strong>Karigami</strong><br />
+          <!-- TODO: echten Namen eintragen -->
+          Inhaber: <strong>[Vorname Nachname]</strong> (Einzelunternehmer)<br />
+          <!-- TODO: ladungsfähige Anschrift eintragen -->
+          Anschrift: <strong>[Straße Hausnr., PLZ Ort, Land]</strong>
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>
+          E-Mail:
+          <a href="mailto:contact@karigami.games">contact@karigami.games</a
+          ><br />
+          Telefon: <strong>[optional]</strong>
+        </p>
+
+        <h2>Umsatzsteuer</h2>
+        <p>
+          Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:
+          <strong>[falls vorhanden, sonst löschen]</strong>
+        </p>
+
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p><strong>[Vorname Nachname]</strong> (Anschrift wie oben)</p>
+
+        <h2>Haftung für Inhalte</h2>
+        <p>
+          Als Diensteanbieter sind wir gemäß den allgemeinen Gesetzen für eigene
+          Inhalte auf diesen Seiten verantwortlich. Für die Richtigkeit,
+          Vollständigkeit und Aktualität der Inhalte übernehmen wir jedoch keine
+          Gewähr.
+        </p>
+
+        <h2>Haftung für Links</h2>
+        <p>
+          Diese Website enthält ggf. Links zu externen Websites Dritter. Auf
+          deren Inhalte haben wir keinen Einfluss. Deshalb können wir für diese
+          fremden Inhalte auch keine Gewähr übernehmen.
+        </p>
+
+        <h2>Urheberrecht</h2>
+        <p>
+          Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen
+          Seiten unterliegen dem deutschen Urheberrecht.
+        </p>
+
+        <hr class="sep" />
+        <p class="small"><a href="index.html">← Zurück</a></p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footerInner">
+        <div>© <span id="y"></span> Karigami</div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
