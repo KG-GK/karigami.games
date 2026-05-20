@@ -276,18 +276,18 @@ p {
 }
 .gameLibrary {
   display: grid;
-  grid-template-columns: repeat(2, minmax(180px, 240px));
-  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 190px));
+  gap: 14px;
   justify-content: start;
   align-items: start;
 }
 .gameCard {
   position: relative;
   display: block;
-  width: min(100%, 240px);
+  width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
   text-decoration: none;
@@ -309,6 +309,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: inherit;
   filter: saturate(1.08) contrast(1.04);
   transform: scale(1.01);
   transition:
@@ -364,17 +365,16 @@ p {
     grid-template-columns: 1fr;
   }
   .gameLibrary {
-    grid-template-columns: repeat(2, minmax(160px, 220px));
+    grid-template-columns: repeat(2, minmax(0, 180px));
   }
 }
 @media (max-width: 560px) {
   .gameLibrary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 10px;
   }
   .gameCard {
-    width: 100%;
-    border-radius: 18px;
+    border-radius: 20px;
   }
   .gameCardContent {
     inset: auto 8px 8px;
