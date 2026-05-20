@@ -252,9 +252,98 @@ p {
   margin-top: 22px;
   padding: 22px;
 }
+.section:not(.card) {
+  padding-left: 0;
+  padding-right: 0;
+}
 .section h2 {
   margin: 0 0 10px;
   font-size: 22px;
+}
+.sectionHead {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(260px, 1fr);
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+.sectionHead p {
+  margin: 0;
+  color: var(--muted);
+}
+.gameLibrary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.gameCard {
+  position: relative;
+  display: block;
+  min-height: 330px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  isolation: isolate;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.gameCard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.52);
+}
+.gameCardImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.04);
+  transform: scale(1.01);
+  transition:
+    filter 0.18s ease,
+    transform 0.18s ease;
+  z-index: -2;
+}
+.gameCard:hover .gameCardImage {
+  filter: saturate(1.15) contrast(1.08);
+  transform: scale(1.04);
+}
+.gameCardShade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4, 8, 18, 0.05), rgba(4, 8, 18, 0.48)),
+    radial-gradient(circle at 50% 20%, transparent 0, rgba(4, 8, 18, 0.32) 72%);
+  z-index: -1;
+}
+.gameCardContent {
+  position: absolute;
+  inset: auto 18px 18px;
+}
+.gameCardGlass {
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(7, 11, 22, 0.44);
+  backdrop-filter: blur(12px) saturate(1.18);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+}
+.gameCardGlass h3 {
+  margin: 5px 0 6px;
+  font-size: clamp(25px, 4vw, 42px);
+  line-height: 1.02;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+.gameCardGlass p {
+  margin: 0;
+  color: rgba(247, 249, 255, 0.88);
 }
 .grid2 {
   display: grid;
@@ -262,8 +351,23 @@ p {
   gap: 16px;
 }
 @media (max-width: 900px) {
+  .sectionHead,
   .grid2 {
     grid-template-columns: 1fr;
+  }
+  .gameLibrary {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .gameCard {
+    min-height: 280px;
+  }
+  .gameCardContent {
+    inset: auto 12px 12px;
+  }
+  .gameCardGlass {
+    padding: 14px;
   }
 }
 

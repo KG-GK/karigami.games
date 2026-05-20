@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Imprint — Karigami</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a class="brand" href="index.html">
+          <img
+            src="../assets/logo.svg"
+            alt="Karigami Logo"
+            onerror="this.style.display = 'none'"
+          />
+          <span>karigami</span>
+        </a>
+        <div class="navlinks">
+          <a href="index.html#games">Games</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="../impressum.html" lang="de">Deutsch</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container legal">
+      <div class="card cardPad">
+        <h1>Imprint</h1>
+        <p class="small">Information pursuant to § 5 DDG</p>
+
+        <h2>Provider</h2>
+        <p>
+          <strong>Karigami</strong><br />
+          Owner: <strong>[First name Last name]</strong> (sole proprietor)<br />
+          Address: <strong>[Street no., postal code city, country]</strong>
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Email:
+          <a href="mailto:contact@karigami.games">contact@karigami.games</a
+          ><br />
+          Phone: <strong>[optional]</strong>
+        </p>
+
+        <h2>VAT</h2>
+        <p>
+          VAT identification number pursuant to § 27a UStG:
+          <strong>[if available, otherwise delete]</strong>
+        </p>
+
+        <h2>Responsible for Content</h2>
+        <p><strong>[First name Last name]</strong> (address as above)</p>
+
+        <h2>Liability for Content</h2>
+        <p>
+          As a service provider, we are responsible for our own content on these
+          pages under general law. However, we do not assume any liability for
+          the accuracy, completeness, or timeliness of the content.
+        </p>
+
+        <h2>Liability for Links</h2>
+        <p>
+          This website may contain links to external third-party websites. We
+          have no influence over their content and therefore cannot accept any
+          liability for this external content.
+        </p>
+
+        <h2>Copyright</h2>
+        <p>
+          Content and works created by the site operator on these pages are
+          subject to German copyright law.
+        </p>
+
+        <hr class="sep" />
+        <p class="small"><a href="index.html">Back</a></p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footerInner">
+        <div>© <span id="y"></span> Karigami</div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap">
+          <a href="imprint.html">Imprint</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
