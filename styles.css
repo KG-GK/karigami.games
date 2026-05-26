@@ -95,7 +95,7 @@ a:hover {
 }
 .brand span {
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 0;
 }
 .navlinks {
   display: flex;
@@ -112,6 +112,45 @@ a:hover {
 .navlinks a:hover {
   color: var(--text);
   background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 680px) {
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 16px 12px;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navlinks {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .navlinks::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navlinks a {
+    flex: 0 0 auto;
+    padding: 5px 6px;
+    border-radius: 999px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
 }
 
 .hero {
@@ -145,7 +184,7 @@ a:hover {
 .kicker {
   color: var(--muted);
   font-size: 14px;
-  letter-spacing: 0.4px;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -251,6 +290,7 @@ p {
 .section {
   margin-top: 22px;
   padding: 22px;
+  scroll-margin-top: 92px;
 }
 .section:not(.card) {
   padding-left: 0;
@@ -264,15 +304,9 @@ p {
   font-size: 22px;
 }
 .sectionHead {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(260px, 1fr);
-  gap: 18px;
+  display: flex;
   align-items: end;
   margin-bottom: 16px;
-}
-.sectionHead p {
-  margin: 0;
-  color: var(--muted);
 }
 .gameLibrary {
   display: grid;
@@ -324,35 +358,28 @@ p {
 .gameCardShade {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(4, 8, 18, 0.05), rgba(4, 8, 18, 0.48)),
-    radial-gradient(circle at 50% 20%, transparent 0, rgba(4, 8, 18, 0.32) 72%);
+  background: linear-gradient(180deg, transparent 46%, rgba(4, 8, 18, 0.44));
   z-index: -1;
 }
 .gameCardContent {
   position: absolute;
-  inset: auto 12px 12px;
+  inset: auto 0 0;
 }
 .gameCardGlass {
-  padding: 12px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(7, 11, 22, 0.44);
-  backdrop-filter: blur(12px) saturate(1.18);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+  padding: 11px 12px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(7, 11, 22, 0.46);
+  backdrop-filter: blur(10px) saturate(1.18);
+  box-shadow: 0 -14px 34px rgba(0, 0, 0, 0.26);
 }
 .gameCardGlass h3 {
-  margin: 4px 0 4px;
-  font-size: clamp(22px, 3vw, 30px);
-  line-height: 1.02;
+  margin: 0;
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.05;
+  text-align: center;
   color: #ffffff;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
-}
-.gameCardGlass p {
-  margin: 0;
-  color: rgba(247, 249, 255, 0.88);
-  font-size: 13px;
-  line-height: 1.35;
+  white-space: nowrap;
 }
 .grid2 {
   display: grid;
@@ -360,7 +387,6 @@ p {
   gap: 16px;
 }
 @media (max-width: 900px) {
-  .sectionHead,
   .grid2 {
     grid-template-columns: 1fr;
   }
@@ -377,17 +403,13 @@ p {
     border-radius: 20px;
   }
   .gameCardContent {
-    inset: auto 8px 8px;
+    inset: auto 0 0;
   }
   .gameCardGlass {
-    padding: 10px;
-    border-radius: 14px;
+    padding: 9px 8px 10px;
   }
   .gameCardGlass h3 {
-    font-size: clamp(18px, 6vw, 24px);
-  }
-  .gameCardGlass p {
-    display: none;
+    font-size: clamp(15px, 4.4vw, 18px);
   }
 }
 
