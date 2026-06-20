@@ -231,7 +231,7 @@ a:hover {
 }
 .heroGrid {
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
+  grid-template-columns: minmax(0, 760px);
   gap: 22px;
 }
 @media (max-width: 900px) {
@@ -330,34 +330,6 @@ p {
 }
 .btnGhost:hover {
   color: var(--text);
-}
-
-.sidePanel {
-  padding: 22px;
-  position: relative;
-  overflow: hidden;
-}
-.glow {
-  position: absolute;
-  inset: -120px -120px auto auto;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent 60%);
-  filter: blur(0px);
-  pointer-events: none;
-}
-.list {
-  margin: 14px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.list li {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  color: rgba(231, 234, 243, 0.88);
-}
-.list li:last-child {
-  border-bottom: none;
 }
 
 .section {
@@ -471,14 +443,12 @@ p {
     opacity 0.18s ease,
     transform 0.18s ease;
 }
-.gameCard:hover .gameCardStores,
-.gameCard:focus-within .gameCardStores {
+.gameCard:hover .gameCardStores {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1);
 }
-.gameCard:hover .gameCardContent,
-.gameCard:focus-within .gameCardContent {
+.gameCard:hover .gameCardContent {
   opacity: 0;
   transform: translateY(12px);
 }
@@ -584,18 +554,6 @@ p {
   }
   .gameCardGlass h3 {
     font-size: clamp(13px, 3.6vw, 15px);
-  }
-}
-@media (hover: none) {
-  .gameCardStores {
-    opacity: 1;
-    pointer-events: auto;
-    transform: scale(1);
-  }
-
-  .gameCardContent {
-    opacity: 0;
-    transform: translateY(12px);
   }
 }
 
