@@ -443,12 +443,14 @@ p {
     opacity 0.18s ease,
     transform 0.18s ease;
 }
-.gameCard:hover .gameCardStores {
+.gameCard:hover .gameCardStores,
+.gameCard.isTapped .gameCardStores {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1);
 }
-.gameCard:hover .gameCardContent {
+.gameCard:hover .gameCardContent,
+.gameCard.isTapped .gameCardContent {
   opacity: 0;
   transform: translateY(12px);
 }
