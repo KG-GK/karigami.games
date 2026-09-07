@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Brand } from "./brand";
+import { withWaveText } from "./wave-text";
 import { content, site, type Locale } from "@/lib/content";
 
 export function Header({ locale, alternate }: { locale: Locale; alternate?: string }) {
@@ -20,7 +21,7 @@ export function Header({ locale, alternate }: { locale: Locale; alternate?: stri
     return () => document.removeEventListener("keydown", onEscape);
   }, [open]);
 
-  return <>
+  return withWaveText(<>
     <a className="skip-link" href="#main">{t.skip}</a>
     <header className="site-header">
       <div className="header-inner container">
@@ -43,5 +44,5 @@ export function Header({ locale, alternate }: { locale: Locale; alternate?: stri
         <a href={site.itch} target="_blank" rel="noopener noreferrer">itch.io <ArrowUpRight size={20} /></a>
       </nav>
     </header>
-  </>;
+  </>);
 }

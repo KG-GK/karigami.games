@@ -17,11 +17,12 @@ export const content = {
     intro: "Aus seltsamen Ideen werden kleine Welten. Ich bin Kaan und entwickle Spiele, die ich selbst gerne spielen würde.",
     explore: "Entdecke die Games", meet: "Lerne mich kennen",
     location: "INDIE GAMES AUS HANNOVER", scroll: "WEITERSPIELEN",
-    flight: "Klicken. Fliegen lassen.", flightLabel: "Papierflieger fliegen lassen", flightDone: "Und noch eine Runde?", flightNote: "JEDE IDEE FÄNGT KLEIN AN.",
+    catHint: "Neugierig? Versuch zu klicken!", catLabel: "Mit der Origami-Katze das Farbtheme wechseln", catNote: "NEUGIER HAT IHREN EIGENEN KOPF.",
+    themeNames: { paper: "Weißes Theme aktiviert.", ink: "Schwarzes Theme aktiviert.", red: "Rotes Theme aktiviert." },
     strip: ["AUS NEUGIER GEMACHT", "FÜR SPIELFREUDE GEBAUT", "EIN BISSCHEN EIGENSINN"],
     gamesLabel: "01 / DIE GAMES", gamesTitle: "Kleine Welten.\nEigene Regeln.",
     gamesIntro: "Zwei Ideen, die nicht auf dem Papier geblieben sind. Finde dein nächstes Spiel für zwischendurch.",
-    appStore: "Im App Store", androidSoon: "Android in Planung", offline: "Auch offline spielbar",
+    appStore: "Im App Store", googlePlay: "Bei Google Play", offline: "Auch offline spielbar",
     pocketDescription: "PocketWars für die Hosentasche. Deine nächste Runde ist immer nur einen Fingertipp entfernt.",
     hammerDescription: "Ein Hammer mit Raketenantrieb. Manchmal braucht eine Spielidee nicht mehr, um loszufliegen.",
     itchHeading: "Noch neugierig?", itchDescription: "Mehr von Karigami findest du auf itch.io.", itchCta: "Zu meinem itch.io",
@@ -45,11 +46,12 @@ export const content = {
     intro: "Turning curious ideas into little worlds. I’m Kaan, and I make the games I’d love to play myself.",
     explore: "Explore the games", meet: "Meet the maker",
     location: "INDIE GAMES FROM HANNOVER", scroll: "KEEP PLAYING",
-    flight: "Click. Let it fly.", flightLabel: "Launch the paper plane", flightDone: "One more flight?", flightNote: "EVERY IDEA STARTS SMALL.",
+    catHint: "Curious? Try clicking!", catLabel: "Change the color theme with the origami cat", catNote: "CURIOSITY HAS A MIND OF ITS OWN.",
+    themeNames: { paper: "Light theme activated.", ink: "Dark theme activated.", red: "Red theme activated." },
     strip: ["MADE OUT OF CURIOSITY", "BUILT FOR THE JOY OF PLAY", "A LITTLE DIFFERENT"],
     gamesLabel: "01 / THE GAMES", gamesTitle: "Little worlds.\nTheir own rules.",
     gamesIntro: "Two ideas that made it off the page. Find your next game for those in-between moments.",
-    appStore: "View on App Store", androidSoon: "Android planned", offline: "Playable offline, too",
+    appStore: "View on App Store", googlePlay: "View on Google Play", offline: "Playable offline, too",
     pocketDescription: "PocketWars, right in your pocket. Your next round is always just a tap away.",
     hammerDescription: "A rocket-powered hammer. Sometimes that’s all a game idea needs to take flight.",
     itchHeading: "Still curious?", itchDescription: "Find more from Karigami on itch.io.", itchCta: "Visit my itch.io",
@@ -70,7 +72,7 @@ export const content = {
 export function gameData(locale: Locale) {
   const t = content[locale];
   return [
-    { id: "pocketwars", number: "01", name: "PocketWars", subtitle: "FRONTLINES", image: "/assets/Pocketwars_widget.png", description: t.pocketDescription, url: "https://apps.apple.com/de/app/pocketwars-frontlines/id6760602813" },
-    { id: "thrusthammer", number: "02", name: "ThrustHammer", subtitle: "READY FOR LIFTOFF", image: "/assets/ThrustHammer_widget.png", description: t.hammerDescription, url: "https://apps.apple.com/de/app/thrusthammer/id6769060279" },
+    { id: "pocketwars", number: "01", name: "PocketWars", subtitle: "FRONTLINES", image: "/assets/Pocketwars_widget.png", description: t.pocketDescription, url: "https://apps.apple.com/de/app/pocketwars-frontlines/id6760602813", androidUrl: "https://play.google.com/store/apps/details?id=com.karegami.pocketwars&pcampaignid=web_share" },
+    { id: "thrusthammer", number: "02", name: "ThrustHammer", subtitle: "READY FOR LIFTOFF", image: "/assets/ThrustHammer_widget.png", description: t.hammerDescription, url: "https://apps.apple.com/de/app/thrusthammer/id6769060279", androidUrl: "https://play.google.com/store/apps/details?id=com.karigami.thrusthammer&pcampaignid=web_share" },
   ];
 }

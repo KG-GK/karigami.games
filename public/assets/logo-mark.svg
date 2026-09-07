@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" fill="none">
+  <title>Karigami — Origami-Katzenkopf</title>
+  <desc>Ein schlichter roter Katzenkopf von vorn, mit zwei spitzen Ohren und drei geometrischen Papierflächen.</desc>
+  <path d="M3 3L30 25H69L97 3L91 67L50 95L9 67L3 3Z" fill="#EF694D"/>
+  <path d="M30 25H69L50 95L9 67L30 25Z" fill="#D9432D"/>
+  <path d="M69 25L91 67L50 95L69 25Z" fill="#B63525"/>
+</svg>

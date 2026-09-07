@@ -1,0 +1,155 @@
+:root {
+  color-scheme: light;
+  --paper: #f7f5ef;
+  --ink: #272922;
+  --red: #d9432d;
+  --muted: #6e7066;
+  --line: #ddddd3;
+  --surface: #eeeee5;
+  --surface-border: #e3e3d9;
+  --raised: #f9f7ef;
+  --card-cool: #d5eaf0;
+  --card-cool-border: #c9e1e6;
+  --control-border: #c8cbbf;
+  --control-hover: #e9eadf;
+  --on-accent: #ffffff;
+  --accent-hover: #bd3522;
+  --header-bg: #f7f5eff2;
+  --soft-fill: #ffffff9c;
+  --tape: #d9d5bfaa;
+  --shadow: #27292224;
+  --deep-shadow: #27292255;
+  --cat-base: #d9432d;
+  --cat-mid: #df482f;
+  --cat-light: #ef694d;
+  --cat-highlight: #e95c40;
+  --cat-dark: #c43a27;
+  --cat-fold: #b63525;
+  --cat-deep: #a52e21;
+  --cat-muzzle: #eb6145;
+  --logo-filter: none;
+  --apple-filter: none;
+}
+
+:root[data-theme="ink"] {
+  color-scheme: dark;
+  --paper: #20211d;
+  --ink: #f7f5ef;
+  --red: #f4775f;
+  --muted: #b2b3a8;
+  --line: #42443b;
+  --surface: #292b25;
+  --surface-border: #3c3f35;
+  --raised: #33362d;
+  --card-cool: #283634;
+  --card-cool-border: #40534c;
+  --control-border: #727668;
+  --control-hover: #383c31;
+  --on-accent: #20211d;
+  --accent-hover: #ff9985;
+  --header-bg: #20211df2;
+  --soft-fill: #f7f5ef14;
+  --tape: #b5b29b38;
+  --shadow: #00000045;
+  --deep-shadow: #00000077;
+  --cat-base: #eeeade;
+  --cat-mid: #e2ded1;
+  --cat-light: #fffdf7;
+  --cat-highlight: #f7f3e7;
+  --cat-dark: #c4bead;
+  --cat-fold: #aaa28f;
+  --cat-deep: #857d6b;
+  --cat-muzzle: #f4eee1;
+  --logo-filter: brightness(0) invert(.94);
+  --apple-filter: invert(1);
+}
+
+:root[data-theme="red"] {
+  color-scheme: light;
+  --paper: #d6402a;
+  --ink: #030302;
+  --red: #ffffff;
+  --muted: #030302;
+  --line: #9d2c1f;
+  --surface: #de4933;
+  --surface-border: #a92e20;
+  --raised: #e65d46;
+  --card-cool: #e45d42;
+  --card-cool-border: #a22c1e;
+  --control-border: #611b12;
+  --control-hover: #e6543e;
+  --on-accent: #20211d;
+  --accent-hover: #efe8d9;
+  --header-bg: #d6402af2;
+  --soft-fill: #fffdf725;
+  --tape: #fff2cd40;
+  --shadow: #56120d28;
+  --deep-shadow: #56120d55;
+  --cat-base: #20211d;
+  --cat-mid: #292b25;
+  --cat-light: #494c40;
+  --cat-highlight: #36392f;
+  --cat-dark: #161712;
+  --cat-fold: #10110d;
+  --cat-deep: #080906;
+  --cat-muzzle: #3a3d32;
+  --logo-filter: brightness(0);
+  --apple-filter: none;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.wave-text, .wave-glyph { position: relative; }
+
+/* Keep both full-color views opaque; reveal the live new view from the cat. */
+html[data-theme-transition="active"]::view-transition-old(root),
+html[data-theme-transition="active"]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-theme-transition="active"]::view-transition-old(root) { z-index: 1; }
+html[data-theme-transition="active"]::view-transition-new(root) { z-index: 2; }
+html[data-theme-transition="active"]::view-transition-group(root) { animation: none; }
+html[data-theme-transition="active"]::view-transition { pointer-events: none; }
+
+/* A fine moving edge follows exactly the same radius and linear timing. */
+.theme-wave-ring {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: clip;
+  contain: strict;
+  pointer-events: none;
+}
+html[data-theme-wave="running"] .theme-wave-ring { display: block; }
+html[data-theme-wave="running"] .theme-wave-ring::after {
+  content: "";
+  position: absolute;
+  left: var(--wave-x);
+  top: var(--wave-y);
+  width: calc(var(--wave-radius) * 2);
+  height: calc(var(--wave-radius) * 2);
+  border: 1px solid var(--red);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: theme-wave-edge var(--wave-duration) linear both;
+}
+@keyframes theme-wave-edge {
+  from { transform: translate(-50%, -50%) scale(0); opacity: .38; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme-wave="running"] .theme-wave-ring { display: none; }
+}

@@ -6,10 +6,11 @@ import { Footer } from "./footer";
 import { PaperMark } from "./brand";
 import { PaperPlayground } from "./paper-playground";
 import { CopyEmail } from "./copy-email";
+import { withWaveText } from "./wave-text";
 
 export function Home({ locale }: { locale: Locale }) {
   const t = content[locale];
-  return <>
+  return withWaveText(<>
     <Header locale={locale} />
     <main id="main">
       <section className="hero container" aria-labelledby="hero-heading">
@@ -35,7 +36,14 @@ export function Home({ locale }: { locale: Locale }) {
             <div className="game-image-wrap"><Image src={game.image} alt={game.name === "PocketWars" ? (locale === "de" ? "Rote und schwarze Spielfiguren von PocketWars" : "Red and black PocketWars playing pieces") : (locale === "de" ? "Der raketengetriebene Hammer aus ThrustHammer" : "The rocket-powered hammer from ThrustHammer")} width={500} height={500} sizes="(max-width: 600px) 65vw, 290px" /></div>
             <div className="game-art-bottom"><span>{game.subtitle}</span><span className="game-art-arrow"><ArrowUpRight size={22} /></span></div>
           </a>
-          <div className="game-details"><div className="game-title-row"><h3>{game.name}</h3><span className="platform-label"><Smartphone size={14} /> MOBILE</span></div><p>{game.description}</p><div className="game-actions"><a className="store-link" href={game.url} target="_blank" rel="noopener noreferrer"><Image src="/assets/Apple_logo_black.png" width={17} height={20} alt="" />{t.appStore}<ArrowUpRight size={16} /></a><span className="android-note"><span />{t.androidSoon}</span></div></div>
+          <div className="game-details">
+            <div className="game-title-row"><h3>{game.name}</h3><span className="platform-label"><Smartphone size={14} /> iOS / Android</span></div>
+            <p>{game.description}</p>
+            <div className="game-actions">
+              <a className="store-link" href={game.url} target="_blank" rel="noopener noreferrer" aria-label={`${game.name} — ${t.appStore}`}><Image src="/assets/Apple_logo_black.png" width={17} height={20} alt="" />{t.appStore}<ArrowUpRight size={16} /></a>
+              <a className="store-link" href={game.androidUrl} target="_blank" rel="noopener noreferrer" aria-label={`${game.name} — ${t.googlePlay}`}><Image src="/assets/Android_Logo_2014_-_2019.png" width={17} height={20} alt="" />{t.googlePlay}<ArrowUpRight size={16} /></a>
+            </div>
+          </div>
         </article>)}</div>
         <div className="itch-callout"><div className="itch-callout-copy"><span className="itch-asterisk" aria-hidden="true"><Asterisk size={37} strokeWidth={1.3} /></span><p><strong>{t.itchHeading}</strong> {t.itchDescription}</p></div><a className="text-link" href={site.itch} target="_blank" rel="noopener noreferrer">{t.itchCta}<ArrowUpRight size={19} /></a></div>
       </section>
@@ -48,5 +56,5 @@ export function Home({ locale }: { locale: Locale }) {
       <section id="support" className="contact-section container section-space" aria-labelledby="contact-heading"><p className="eyebrow section-label">{t.contactLabel}</p><div className="contact-heading"><h2 id="contact-heading">{t.contactTitle}</h2><ArrowDownRight size={75} strokeWidth={1} aria-hidden="true" /></div><p className="contact-intro">{t.contactBody}</p><div className="contact-email-row"><a className="contact-email" href={`mailto:${site.email}`}>{site.email}<ArrowUpRight aria-hidden="true" /></a><CopyEmail locale={locale} /></div><p className="support-note"><Mail size={16} />{t.supportNote}</p></section>
     </main>
     <Footer locale={locale} />
-  </>;
+  </>);
 }
