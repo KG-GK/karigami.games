@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { projectStories } from "../src/lib/project-stories.ts";
 
 const base = process.env.TEST_BASE_URL ?? "http://127.0.0.1:3000";
 
@@ -12,6 +13,7 @@ test("both homepages render the games, accessible navigation, and correct langua
     assert.ok(html.includes(headline));
     assert.match(html, /id="main"/);
     assert.match(html, /id="games"/);
+    assert.match(html, /id="current-projects"/);
     assert.match(html, /id="about"/);
     assert.match(html, /id="support"/);
     assert.match(html, /aria-controls="mobile-navigation"/);
@@ -21,6 +23,19 @@ test("both homepages render the games, accessible navigation, and correct langua
     assert.match(html, /mailto:contact@karigami\.games/);
     assert.match(html, /property="og:image"/);
     assert.ok(html.includes(`rel="canonical" href="https://www.karigami.games${route === "/" ? "" : route}"`) || html.includes(`rel="canonical" href="https://www.karigami.games${route}"`));
+  }
+});
+
+test("homepages include the new project section, hero links, and all eight stories without client JavaScript", async () => {
+  for (const [route, current, explore, meet] of [["/", "Aktuelle Projekte", "Games entdecken", "Mehr über mich"], ["/en", "Current projects", "Explore games", "Learn about me"]]) {
+    const html = await (await fetch(`${base}${route}`)).text();
+    for (const text of [current, explore, meet, "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
+      assert.ok(html.includes(text), `${route}: ${text}`);
+    }
+    assert.match(html, /href="#current-projects"/);
+    assert.match(html, /class="notebook-cover|class="idea-note notebook-cover/);
+    assert.match(html, /<noscript><div class="notebook-fallback">/);
+    assert.doesNotMatch(html, /INDEPENDENTLY MADE\. FULL OF CHARACTER\.|Meet the maker|Good ideas fit/);
   }
 });
 
@@ -82,5 +97,14 @@ test("unknown routes return a real 404", async () => {
   for (const route of ["/this-page-does-not-exist", "/en/this-page-does-not-exist"]) {
     const response = await fetch(`${base}${route}`);
     assert.equal(response.status, 404);
+  }
+});
+
+test("all story image URLs resolve, including the image with an umlaut in its filename", async () => {
+  const paths = new Set(projectStories("en").flatMap((story) => [...story.images.map((picture) => picture.src), ...(story.icon ? [story.icon.src] : [])]));
+  for (const path of paths) {
+    const response = await fetch(`${base}${encodeURI(path)}`);
+    assert.equal(response.status, 200, path);
+    assert.match(response.headers.get("content-type"), /^image\//, path);
   }
 });

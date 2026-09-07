@@ -19,7 +19,7 @@ npm run build
 npm run start
 ```
 
-`npm test` prüft die laufende Website auf Port 3000. Mit `TEST_BASE_URL` lässt sich ein anderer lokaler Server angeben. Die Tests prüfen gerenderten Inhalt, Sprachen, Rechtsseiten, alte URLs, Bilder, Metadaten, echte 404-Antworten und `app-ads.txt`.
+`npm test` prüft die laufende Website auf Port 3000. Mit `TEST_BASE_URL` lässt sich ein anderer lokaler Server angeben. Die Tests prüfen gerenderten Inhalt, Sprachen, Rechtsseiten, alte URLs, Bilder, Metadaten, echte 404-Antworten und `app-ads.txt`. Zusätzlich werden Theme-Logik und die Zettelsammlung geprüft. `npm run test:notebook` prüft die tatsächliche React-Komponente in JSDOM ohne laufenden Server: Öffnen, alle acht Seiten, Medien und Links, Fokus, Tastatur, Wischgesten und Übersetzungen.
 
 ## Auf Vercel veröffentlichen
 
@@ -34,6 +34,10 @@ Es werden keine Umgebungsvariablen, Datenbank oder API-Schlüssel benötigt. Dep
 
 - `src/lib/content.ts`: deutsche/englische Texte, Game-Daten, App-Store-Links, Kontakt und Domain.
 - `src/components/home.tsx`: Aufbau der Startseite.
+- `src/lib/project-stories.ts`: acht Projektgeschichten in beiden Sprachen, Bildzuordnung und Spiel-Links. BoostHammer verwendet die vorhandenen ThrustHammer-Store-Links.
+- `src/components/project-notebook.tsx` und `src/app/project-notebook.css`: anklickbarer Zettelstapel im About-Bereich; Blättern per Klick auf Papier, Text oder Bild, per Buttons, Pfeiltasten und horizontalen Wischgesten. Ein Klick auf den letzten Zettel führt zum Titelblatt. Links und Textauswahl lösen kein Umblättern aus; Wischgesten blättern nur einmal. Home/Escape öffnen das Titelblatt, End die letzte Geschichte. Bei reduzierter Bewegung entfällt die Blätteranimation. Ohne JavaScript sind alle Geschichten als aufklappbare Texte lesbar.
+- `public/assets/stories/README.md`: Zuordnung der neun eingebundenen Originalbilder; PocketWars und BoostHammer verwenden die vorhandenen App-Icons.
+- `#current-projects`: neue Sektion zwischen Games und About. Zeigt vorläufig einen Coming-soon-Hinweis, bis konkrete aktuelle Projekte benannt sind.
 - `src/app/globals.css`: Design, Typografie, responsive Layouts, Animationen.
 - `src/app/themes.css`: vollständige Paletten für Papierweiß, Schwarz und Rot, einschließlich Katzenfacetten, Papierflächen und Bedienelementen.
 - `src/components/theme-provider.tsx`: radiale Theme-Schockwelle mit der nativen View Transition API; zeitversetztes Zittern sichtbarer Buchstaben über die Web Animations API. Die Entfernung zur Katze bestimmt die Verzögerung.
@@ -45,7 +49,7 @@ Es werden keine Umgebungsvariablen, Datenbank oder API-Schlüssel benötigt. Dep
 - `src/lib/redirects.mjs`: permanente Weiterleitungen der alten HTML-URLs.
 - `legacy/`: vollständige bisherige statische Website als Referenz. Dieser Ordner wird nicht veröffentlicht und nicht von Next.js gerendert.
 
-Die Seiten werden beim Build statisch vorgerendert. Nur Menü, Origami-Katze und Kopieren der E-Mail-Adresse benötigen React im Browser. Beide Sprachen haben ein eigenes `html lang` und gegenseitige Sprachverweise. Schriftdateien und Bilder werden lokal ausgeliefert; es sind keine Analytics, Tracking-Cookies oder externen Schriftabrufe eingebaut. Der Kontakt läuft über E-Mail; es gibt kein vorgetäuschtes Kontaktformular.
+Die Seiten werden beim Build statisch vorgerendert. Menü, Origami-Katze, Zettelsammlung und Kopieren der E-Mail-Adresse nutzen React im Browser. Beide Sprachen haben ein eigenes `html lang` und gegenseitige Sprachverweise. Schriftdateien und Bilder werden lokal ausgeliefert; es sind keine Analytics, Tracking-Cookies oder externen Schriftabrufe eingebaut. Der Kontakt läuft über E-Mail; es gibt kein vorgetäuschtes Kontaktformular.
 
 Ein Klick auf die Katze wechselt Papierweiß → Schwarz → Rot → Papierweiß. Das gewählte Theme wird ausschließlich im Browser unter `karigami-theme` gespeichert und vor dem ersten Zeichnen wiederhergestellt, auch auf Rechtsseiten und nach einem Sprachwechsel. Bei gesperrtem Speicher funktioniert der Wechsel weiterhin. Schnell aufeinanderfolgende Klicks werden während der laufenden Welle ignoriert. Die Textspannen gehören React und behalten einen zusammenhängenden, zugänglichen Text für Screenreader. Bei `prefers-reduced-motion`, fehlender View Transition API oder abgebrochener Momentaufnahme erfolgt ein direkter Theme-Wechsel. `npm run test:theme` prüft Theme-Reihenfolge, Radius, Buchstaben-Timing, gespeicherte Einstellungen und Vollständigkeit der Paletten ohne laufenden Server.
 

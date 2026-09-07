@@ -1,15 +1,17 @@
 import Image from "next/image";
 import { ArrowDown, ArrowDownRight, ArrowUpRight, Asterisk, Mail, Smartphone } from "lucide-react";
 import { content, gameData, site, type Locale } from "@/lib/content";
+import { projectStories } from "@/lib/project-stories";
 import { Header } from "./header";
 import { Footer } from "./footer";
-import { PaperMark } from "./brand";
+import { ProjectNotebook } from "./project-notebook";
 import { PaperPlayground } from "./paper-playground";
 import { CopyEmail } from "./copy-email";
 import { withWaveText } from "./wave-text";
 
 export function Home({ locale }: { locale: Locale }) {
   const t = content[locale];
+  const stories = projectStories(locale);
   return withWaveText(<>
     <Header locale={locale} />
     <main id="main">
@@ -19,7 +21,7 @@ export function Home({ locale }: { locale: Locale }) {
             <p className="eyebrow"><span className="status-dot" />{t.eyebrow}</p>
             <h1 id="hero-heading"><span>{t.headline[0]}</span><span className="hero-accent">{t.headline[1]}<br />{t.headline[2]}</span></h1>
             <p className="hero-description">{t.intro}</p>
-            <div className="hero-links"><a className="button button-primary" href="#games">{t.explore}<ArrowDownRight size={20} /></a><a className="text-link" href="#about">{t.meet}<ArrowUpRight size={17} /></a></div>
+            <div className="hero-links"><div className="hero-buttons"><a className="button button-primary" href="#games">{t.explore}<ArrowDownRight size={20} /></a><a className="button button-secondary" href="#current-projects">{t.currentNav}<ArrowDownRight size={20} /></a></div><a className="text-link" href="#about">{t.meet}<ArrowUpRight size={17} /></a></div>
           </div>
           <PaperPlayground locale={locale} />
         </div>
@@ -30,7 +32,7 @@ export function Home({ locale }: { locale: Locale }) {
 
       <section id="games" className="games-section container section-space" aria-labelledby="games-heading">
         <div className="section-heading"><div><p className="eyebrow section-label">{t.gamesLabel}</p><h2 id="games-heading">{t.gamesTitle}</h2></div><p className="section-intro">{t.gamesIntro}</p></div>
-        <div className="games-grid">{gameData(locale).map((game) => <article className={`game-card ${game.id}`} key={game.id}>
+        <div className="games-grid">{gameData(locale).map((game) => <article id={game.id} className={`game-card ${game.id}`} key={game.id}>
           <a className="game-art" href={game.url} target="_blank" rel="noopener noreferrer" aria-label={`${game.name} — ${t.appStore}`}>
             <div className="game-art-meta"><span>GAME / {game.number}</span><span>iOS <ArrowUpRight size={14} /></span></div>
             <div className="game-image-wrap"><Image src={game.image} alt={game.name === "PocketWars" ? (locale === "de" ? "Rote und schwarze Spielfiguren von PocketWars" : "Red and black PocketWars playing pieces") : (locale === "de" ? "Der raketengetriebene Hammer aus ThrustHammer" : "The rocket-powered hammer from ThrustHammer")} width={500} height={500} sizes="(max-width: 600px) 65vw, 290px" /></div>
@@ -48,8 +50,13 @@ export function Home({ locale }: { locale: Locale }) {
         <div className="itch-callout"><div className="itch-callout-copy"><span className="itch-asterisk" aria-hidden="true"><Asterisk size={37} strokeWidth={1.3} /></span><p><strong>{t.itchHeading}</strong> {t.itchDescription}</p></div><a className="text-link" href={site.itch} target="_blank" rel="noopener noreferrer">{t.itchCta}<ArrowUpRight size={19} /></a></div>
       </section>
 
+      <section id="current-projects" className="current-projects-section container section-space" aria-labelledby="current-projects-heading">
+        <div className="section-heading"><div><p className="eyebrow section-label">{t.currentLabel}</p><h2 id="current-projects-heading">{t.currentTitle}</h2></div><p className="section-intro">{t.currentIntro}</p></div>
+        <div className="workbench-note"><span className="workbench-sketch" aria-hidden="true"><Asterisk size={76} strokeWidth={.9} /></span><div><p className="eyebrow">WORK IN PROGRESS</p><h3>{t.currentSoon}</h3><p>{t.currentSoonBody}</p></div></div>
+      </section>
+
       <section id="about" className="about-section" aria-labelledby="about-heading"><div className="container about-grid">
-        <div className="about-art"><p className="eyebrow">{t.aboutLabel}</p><div className="idea-note"><span className="note-pin" /><span className="note-index">NOTE TO SELF — 001</span><PaperMark className="note-paper-mark" /><p>{t.note}</p><div className="note-bottom"><span>{t.noteFooter}</span><Asterisk size={22} strokeWidth={1.25} /></div></div><span className="about-scribble" aria-hidden="true">stay curious.</span></div>
+        <div className="about-art"><p className="eyebrow">{t.aboutLabel}</p><ProjectNotebook locale={locale} stories={stories} /></div>
         <div className="about-copy"><h2 id="about-heading">{t.aboutTitle}<span className="hello-asterisk" aria-hidden="true">✳</span></h2><p className="about-lead">{t.aboutLead}</p><p>{t.aboutBody}</p><p>{t.aboutEnd}</p><div className="signature"><span>Kaan.</span><span className="eyebrow">{t.maker}</span></div></div>
       </div></section>
 

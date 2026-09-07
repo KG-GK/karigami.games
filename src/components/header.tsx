@@ -28,6 +28,7 @@ export function Header({ locale, alternate }: { locale: Locale; alternate?: stri
         <Link className="brand" href={t.home} aria-label={`Karigami — ${locale === "de" ? "Startseite" : "Home"}`}><Brand /></Link>
         <nav className="desktop-nav" aria-label={locale === "de" ? "Hauptnavigation" : "Main navigation"}>
           <Link href={`${t.home}#games`}>Games</Link>
+          <Link href={`${t.home}#current-projects`}>{t.currentNav}</Link>
           <Link href={`${t.home}#about`}>{t.aboutNav}</Link>
           <Link href={`${t.home}#support`}>{t.contactNav}</Link>
         </nav>
@@ -39,8 +40,9 @@ export function Header({ locale, alternate }: { locale: Locale; alternate?: stri
       </div>
       <nav id="mobile-navigation" className="mobile-nav" aria-label={locale === "de" ? "Mobile Navigation" : "Mobile navigation"} hidden={!open}>
         <Link onClick={() => setOpen(false)} href={`${t.home}#games`}>Games <span>01</span></Link>
-        <Link onClick={() => setOpen(false)} href={`${t.home}#about`}>{t.aboutNav} <span>02</span></Link>
-        <Link onClick={() => setOpen(false)} href={`${t.home}#support`}>{t.contactNav} <span>03</span></Link>
+        <Link onClick={() => setOpen(false)} href={`${t.home}#current-projects`}>{t.currentNav} <span>02</span></Link>
+        <Link onClick={() => setOpen(false)} href={`${t.home}#about`}>{t.aboutNav} <span>03</span></Link>
+        <Link onClick={() => setOpen(false)} href={`${t.home}#support`}>{t.contactNav} <span>04</span></Link>
         <a href={site.itch} target="_blank" rel="noopener noreferrer">itch.io <ArrowUpRight size={20} /></a>
       </nav>
     </header>

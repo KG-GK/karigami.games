@@ -1,6 +1,7 @@
 @import "@fontsource-variable/manrope";
 @import "@fontsource-variable/dm-sans";
 @import "./themes.css";
+@import "./project-notebook.css";
 
 :root {
   --display: "Manrope Variable", sans-serif;
@@ -35,6 +36,8 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 26px; padding: 18px 24px; min-height: 54px; font-size: 13px; font-weight: 550; border-radius: 4px; transition: background 180ms, transform 180ms; }
 .button-primary { color: var(--on-accent); background: var(--red); }
 .button-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+.button-secondary { border: 1px solid var(--control-border); background: transparent; }
+.button-secondary:hover { background: var(--surface); border-color: var(--ink); transform: translateY(-2px); }
 .button:hover svg { transform: translate(2px, 2px); }
 .skip-link { position: fixed; z-index: 100; inset: 8px auto auto 8px; padding: 16px; background: var(--ink); color: var(--paper); transform: translateY(-150%); }
 .skip-link:focus { transform: translateY(0); }
@@ -52,7 +55,8 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
 
 .site-header { position: sticky; top: 0; z-index: 30; background: var(--header-bg); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
 .header-inner { height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.desktop-nav { display: flex; align-items: center; gap: 34px; margin-left: 65px; }
+.desktop-nav { display: flex; align-items: center; gap: 26px; margin-left: auto; }
+.desktop-nav a { white-space: nowrap; }
 .desktop-nav a { font-size: 13px; transition: color 160ms; }
 .desktop-nav a:hover { color: var(--red); }
 .header-actions { display: flex; align-items: center; gap: 27px; }
@@ -72,6 +76,9 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
 .hero-accent { color: var(--red); }
 .hero-description { max-width: 350px; font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 29px; }
 .hero-links { display: flex; flex-wrap: wrap; gap: 22px; align-items: center; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-buttons .button { gap: 15px; padding-inline: 20px; }
+.hero-links > .text-link { flex-basis: 100%; }
 .hero-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); margin-top: 64px; padding-block: 23px; }
 .hero-bottom .eyebrow { color: var(--muted); font-size: 9px; }
 .hero-bottom a { gap: 20px; }
@@ -153,7 +160,7 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
 .itch-callout strong { font-weight: 550; color: var(--ink); }
 
 .about-section { background: var(--surface); border-block: 1px solid var(--surface-border); padding-block: 95px; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 95px; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 95px; align-items: start; }
 .about-art { position: relative; min-width: 0; }
 .about-art > .eyebrow { color: var(--muted); margin-bottom: 52px; }
 .idea-note { position: relative; max-width: 380px; padding: 29px 29px 22px; background: var(--raised); box-shadow: 1px 9px 16px -10px var(--deep-shadow); transform: rotate(-6deg); margin-left: 32px; border: 1px solid var(--surface-border); }
@@ -162,7 +169,7 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
 .note-paper-mark { display: block; width: 70px; height: 70px; margin-block: 35px 28px; transform: rotate(-7deg); }
 .idea-note p { white-space: pre-line; font-size: clamp(22px, 2.5vw, 32px); letter-spacing: -1.3px; font-family: var(--display); font-weight: 650; line-height: 1.25; margin-bottom: 33px; }
 .note-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 16px; }
-.note-bottom span { font-size: 7px; letter-spacing: 1.1px; }
+.note-bottom > span { font-size: 7px; letter-spacing: 1.1px; }
 .note-bottom svg { color: var(--red); }
 .about-scribble { position: absolute; right: -12px; bottom: -25px; font-family: Georgia, serif; color: var(--muted); font-size: 22px; font-style: italic; transform: rotate(-8deg); }
 .about-copy { padding-top: 49px; }
@@ -173,6 +180,13 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
 .signature { display: flex; align-items: center; gap: 23px; margin-top: 28px; }
 .signature > span:first-child { font-family: Georgia, serif; font-size: 34px; font-style: italic; transform: rotate(-8deg); }
 .signature > .eyebrow { font-size: 8px; color: var(--muted); }
+
+.current-projects-section { border-top: 1px solid var(--line); }
+.workbench-note { display: flex; align-items: center; gap: 36px; padding: 36px; border: 1px dashed var(--control-border); border-radius: 5px; }
+.workbench-sketch { display: grid; place-items: center; width: 136px; height: 136px; flex-shrink: 0; color: var(--red); background: var(--surface); transform: rotate(-5deg); border: 1px solid var(--surface-border); }
+.workbench-note .eyebrow { color: var(--muted); font-size: 9px; margin-bottom: 13px; }
+.workbench-note h3 { font-size: 25px; font-weight: 600; letter-spacing: -.8px; margin-bottom: 12px; }
+.workbench-note p:last-child { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 0; }
 
 .contact-heading { display: flex; justify-content: space-between; align-items: center; gap: 25px; }
 .contact-heading h2 { font-size: clamp(36px, 5.8vw, 76px); letter-spacing: -3.5px; }
@@ -273,6 +287,8 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
   .hero h1 { font-size: clamp(49px, 7.3vw, 62px); letter-spacing: -3.5px; }
   .hero-description { font-size: 14px; max-width: 330px; }
   .hero-links { align-items: flex-start; flex-direction: column; }
+  .hero-links .hero-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; max-width: 420px; gap: 10px; }
+  .hero-links .hero-buttons .button { padding: 14px 12px; gap: 8px; font-size: 12px; justify-content: space-between; }
   .paper-playground { height: 370px; margin-left: 0; }
   .playground-coordinate { font-size: 6px; }
   .playground-caption { gap: 8px; font-size: 6px; letter-spacing: 1px; width: 100%; left: 0; }
@@ -303,7 +319,7 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
   .idea-note { padding: 25px 21px 18px; margin-left: 0; }
   .note-paper-mark { width: 60px; height: 60px; }
   .idea-note p { font-size: 24px; }
-  .note-bottom span { font-size: 6px; }
+  .note-bottom > span { font-size: 6px; }
   .about-copy h2 { font-size: 35px; gap: 10px; }
   .hello-asterisk { font-size: 31px; }
   .about-copy .about-lead { font-size: 15px; }
@@ -367,9 +383,13 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
   .about-art > .eyebrow { font-size: 9px; margin-bottom: 40px; }
   .idea-note { max-width: 300px; margin-inline: auto; padding: 27px; }
   .idea-note p { font-size: 27px; }
-  .note-bottom span { font-size: 7px; }
+  .note-bottom > span { font-size: 7px; }
   .about-scribble { font-size: 19px; bottom: -28px; right: 7px; }
   .about-copy { padding-top: 0; }
+  .workbench-note { padding: 25px; gap: 24px; align-items: flex-start; flex-direction: column; }
+  .workbench-sketch { width: 85px; height: 85px; }
+  .workbench-sketch svg { width: 55px; }
+  .workbench-note h3 { font-size: 24px; }
   .about-copy h2 { font-size: 40px; gap: 17px; }
   .hello-asterisk { font-size: 37px; }
   .about-copy .about-lead { font-size: 17px; }
@@ -401,11 +421,21 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
   .hero h1 { font-size: 53px; letter-spacing: -3.5px; }
   .hero-links { gap: 17px; }
   .hero-links .text-link { min-height: 32px; }
+  .hero-buttons .button svg { display: none; }
   .game-art { height: 310px; }
   .game-image-wrap { width: 205px; }
   .contact-email { font-size: 18px; letter-spacing: -.65px; }
   .contact-email > svg { width: 16px; }
   .contact-heading > svg { display: none; }
+}
+
+@media (min-width: 801px) and (max-width: 900px) {
+  .desktop-nav, .header-itch { display: none; }
+  .menu-toggle { display: grid; }
+  .header-actions { margin-left: auto; }
+  .mobile-nav:not([hidden]) { display: flex; flex-direction: column; padding: 12px 36px 22px; border-top: 1px solid var(--line); }
+  .mobile-nav > a { display: flex; justify-content: space-between; align-items: center; padding-block: 17px; border-bottom: 1px solid var(--line); font-size: 18px; }
+  .mobile-nav > a > span:last-child { font-size: 10px; color: var(--red); }
 }
 
 /* Native scroll animation remains progressive: content is visible without JS. */

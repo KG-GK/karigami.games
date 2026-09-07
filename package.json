@@ -8,10 +8,13 @@
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/site.test.mjs tests/theme.test.mjs",
-    "test:theme": "node --test tests/theme.test.mjs"
+    "test": "tsx --tsconfig tests/tsconfig.json --test tests/site.test.mjs tests/theme.test.mjs tests/notebook.test.mjs",
+    "test:theme": "node --test tests/theme.test.mjs",
+    "test:notebook": "tsx --tsconfig tests/tsconfig.json --test tests/notebook.test.mjs"
   },
-  "engines": { "node": ">=20.9.0" },
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "dependencies": {
     "@fontsource-variable/dm-sans": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
@@ -27,6 +30,8 @@
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "16.3.4",
+    "jsdom": "^26.1.0",
+    "tsx": "^4.23.13",
     "typescript": "^5.0.0"
   }
 }

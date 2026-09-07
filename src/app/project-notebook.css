@@ -1,0 +1,81 @@
+.project-notebook { width: 100%; max-width: 470px; margin-inline: auto; }
+.notebook-stack { position: relative; padding: 6px 16px 44px; isolation: isolate; touch-action: pan-y pinch-zoom; }
+.notebook-stack::before, .notebook-stack::after { content: ""; position: absolute; inset: 8px 18px 44px; background: var(--raised); border: 1px solid var(--surface-border); z-index: -1; box-shadow: 0 4px 10px -8px var(--deep-shadow); pointer-events: none; }
+.notebook-stack::before { transform: rotate(3deg); }
+.notebook-stack::after { transform: rotate(-1deg); }
+.project-notebook .idea-note { width: 100%; max-width: none; margin: 0; }
+.notebook-cover { display: block; text-align: left; color: var(--ink); transition: transform 260ms ease, box-shadow 260ms ease; }
+.notebook-cover:hover { transform: rotate(-3deg) translateY(-5px); box-shadow: 2px 16px 22px -12px var(--deep-shadow); }
+.notebook-cover:active { transform: rotate(-2deg) translateY(-1px); }
+.notebook-cover-title { display: block; white-space: pre-line; font-family: var(--display); font-size: clamp(24px, 2.5vw, 32px); font-weight: 650; letter-spacing: -1.3px; line-height: 1.25; margin-bottom: 33px; }
+.notebook-cover .note-bottom > span { font-size: 8px; letter-spacing: .7px; }
+.project-notebook .about-scribble { display: flex; align-items: center; gap: 1px; right: 3px; bottom: -10px; font-size: 21px; pointer-events: none; }
+.project-notebook .about-scribble svg { margin-top: -25px; }
+.project-notebook .notebook-page { transform: rotate(-2deg); padding: 26px; animation: turn-note-forward 320ms cubic-bezier(.2,.7,.25,1) both; transform-origin: 10% 50%; cursor: pointer; transition: box-shadow 180ms ease; }
+.project-notebook .notebook-page:hover { box-shadow: 2px 14px 20px -10px var(--deep-shadow); }
+.project-notebook .notebook-page[data-direction="-1"] { animation-name: turn-note-back; }
+.notebook-page .note-pin { width: 70px; height: 23px; top: -12px; }
+.notebook-page .notebook-kicker { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 0 15px; font-family: var(--body); font-size: 9px; font-weight: 500; letter-spacing: .8px; line-height: 1.6; color: var(--muted); }
+.notebook-kicker > span:last-child { text-align: right; }
+.notebook-page h3 { font-size: clamp(24px, 2.35vw, 31px); line-height: 1.15; letter-spacing: -1px; font-weight: 700; margin-bottom: 21px; text-wrap: balance; }
+.notebook-page h3:focus { outline: none; }
+.notebook-media { position: relative; margin-bottom: 23px; }
+.notebook-photo { width: 100%; height: auto; border: 1px solid var(--surface-border); }
+.notebook-media > .notebook-icon { position: absolute; width: 64px; height: 64px; object-fit: contain; right: -9px; top: -12px; transform: rotate(9deg); background: var(--raised); border: 4px solid var(--raised); box-shadow: 0 4px 10px -5px var(--deep-shadow); }
+.notebook-media-icon { display: grid; place-items: center; min-height: 150px; margin-block: 7px 23px; }
+.notebook-media-icon > .notebook-icon { position: static; width: 144px; height: 144px; object-fit: contain; transform: rotate(5deg); border: 0; box-shadow: 0 7px 14px -10px var(--deep-shadow); background: transparent; }
+.notebook-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.notebook-gallery > .notebook-photo:first-child { grid-column: 1 / -1; max-height: 230px; object-fit: contain; }
+.notebook-gallery > .notebook-photo:nth-child(n + 2) { height: 100%; object-fit: contain; }
+.notebook-copy p { margin: 0 0 14px; }
+.notebook-page .notebook-copy p, .notebook-fallback .notebook-copy p { font-family: var(--body); font-size: 14px; font-weight: 400; letter-spacing: 0; line-height: 1.75; white-space: normal; }
+.notebook-copy a { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px; }
+.notebook-copy a:hover { color: var(--red); }
+.notebook-page-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 24px; min-height: 55px; }
+.notebook-stamp { color: var(--red); }
+.notebook-play { display: inline-flex; align-items: center; gap: 12px; background: var(--red); color: var(--on-accent); padding: 11px 15px; border-radius: 3px; font-size: 12px; min-height: 44px; transition: transform 180ms; }
+.notebook-play:hover { transform: translateY(-2px) rotate(-2deg); }
+.notebook-stores { display: flex; gap: 13px; flex-wrap: wrap; justify-content: flex-end; }
+.notebook-stores a { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; min-height: 44px; border-bottom: 1px solid var(--control-border); }
+.notebook-stores a:hover { color: var(--red); }
+.notebook-controls { display: flex; align-items: center; justify-content: space-between; width: min(280px, 100%); margin: 21px auto 0; gap: 14px; }
+.notebook-controls > button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--control-border); background: transparent; transition: transform 180ms, background 180ms; }
+.notebook-controls > button:not(:disabled):hover { transform: rotate(-8deg); background: var(--raised); }
+.notebook-controls button:disabled { opacity: .3; cursor: default; }
+.notebook-position { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.notebook-counter { font-size: 10px; letter-spacing: 1px; }
+.notebook-back { display: flex; align-items: center; gap: 5px; padding: 8px 5px; font-size: 9px; border: 0; background: transparent; color: var(--muted); }
+.notebook-back:not(:disabled):hover { color: var(--ink); }
+.notebook-fallback details { padding: 18px; background: var(--raised); margin-bottom: 16px; border: 1px solid var(--line); }
+.notebook-fallback summary { cursor: pointer; font-family: var(--display); font-weight: 700; margin-bottom: 16px; }
+@media (scripting: none) {
+  .notebook-stack, .notebook-controls { display: none; }
+}
+@keyframes turn-note-forward { from { opacity: 0; transform: perspective(1000px) translateX(12px) rotateY(-12deg) rotate(1deg); } to { opacity: 1; transform: perspective(1000px) translateX(0) rotateY(0) rotate(-2deg); } }
+@keyframes turn-note-back { from { opacity: 0; transform: perspective(1000px) translateX(-12px) rotateY(12deg) rotate(-5deg); } to { opacity: 1; transform: perspective(1000px) translateX(0) rotateY(0) rotate(-2deg); } }
+@media (max-width: 1000px) {
+  .project-notebook .notebook-page { padding: 22px; }
+  .notebook-page .notebook-copy p { font-size: 13px; }
+  .notebook-page .notebook-kicker { font-size: 8px; }
+  .notebook-cover-title { font-size: 27px; }
+}
+@media (max-width: 800px) and (min-width: 601px) {
+  .notebook-stack { padding-inline: 7px; }
+  .notebook-page .notebook-kicker { flex-direction: column; gap: 3px; }
+  .notebook-cover-title { font-size: 23px; letter-spacing: -1px; }
+  .project-notebook .about-scribble { font-size: 17px; }
+}
+@media (max-width: 600px) {
+  .project-notebook { max-width: 400px; }
+  .notebook-stack { padding-inline: 13px; }
+  .notebook-cover-title { font-size: 28px; }
+  .project-notebook .notebook-page { padding: 23px; transform: rotate(-1deg); }
+  .notebook-page .notebook-copy p { font-size: 14px; }
+  .notebook-page h3 { font-size: 28px; }
+  .notebook-page .notebook-kicker { font-size: 8px; }
+  .project-notebook .about-scribble { right: 2px; font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-notebook .notebook-page { animation: none; }
+  .notebook-cover, .project-notebook .notebook-page, .notebook-play, .notebook-controls > button { transition: none; }
+}
