@@ -13,7 +13,7 @@ export function siteMetadata(locale: Locale): Metadata {
     alternates: { canonical: t.home, languages: { de: "/", en: "/en", "x-default": "/" } },
     openGraph: { type: "website", siteName: site.name, title, description: t.intro, url: t.home, locale: locale === "de" ? "de_DE" : "en_GB", alternateLocale: locale === "de" ? "en_GB" : "de_DE", images: [{ url: `${site.url}/og.png`, width: 1732, height: 908, alt: "Karigami — Kleine Games. Große Spielfreude." }] },
     twitter: { card: "summary_large_image", title, description: t.intro, images: [`${site.url}/og.png`] },
-    icons: { icon: [{ url: "/assets/logo-mark.svg", type: "image/svg+xml" }], apple: [{ url: "/assets/apple-touch-icon.png", sizes: "180x180", type: "image/png" }] },
+    icons: { icon: [{ url: "/assets/catlogo.svg", type: "image/svg+xml" }], apple: [{ url: "/assets/apple-touch-icon.png", sizes: "180x180", type: "image/png" }] },
   };
 }
 

@@ -1,12 +1,20 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useReducer, useRef, type ReactNode } from "react";
 import { glyphDelay, glyphDuration, nextTheme, themeBackgrounds, themeStorageKey, waveDuration, waveGeometry } from "@/lib/theme.mjs";
 
 type Theme = keyof typeof themeBackgrounds;
 type Origin = { x: number; y: number };
 type ChangeTheme = (origin: Origin) => Promise<Theme | null>;
 const ThemeContext = createContext<ChangeTheme | null>(null);
+type CatTrigger = "theme" | "tail";
+const CatSequenceContext = createContext<{ stage: number; advance: (trigger: CatTrigger) => void } | null>(null);
+
+function advanceCatSequence(stage: number, trigger: CatTrigger) {
+  // 0: invitation, 1: fallen, 2: revived, 3: tail hint, 4: finished until reload.
+  if (trigger === "tail") return stage === 3 ? 4 : stage;
+  return stage < 3 ? stage + 1 : stage;
+}
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
@@ -30,6 +38,8 @@ function visibleGlyphs(wave: ReturnType<typeof waveGeometry>) {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  // The root layout preserves this state when navigating away from the homepage.
+  const [catStage, advanceCat] = useReducer(advanceCatSequence, 0);
   const busy = useRef(false);
   const animations = useRef<Animation[]>([]);
   const activeTransition = useRef<ViewTransition | null>(null);
@@ -126,11 +136,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  return <ThemeContext.Provider value={cycleTheme}>{children}<div className="theme-wave-ring" aria-hidden="true" /></ThemeContext.Provider>;
+  return <ThemeContext.Provider value={cycleTheme}><CatSequenceContext.Provider value={{ stage: catStage, advance: advanceCat }}>{children}</CatSequenceContext.Provider><div className="theme-wave-ring" aria-hidden="true" /></ThemeContext.Provider>;
 }
 
 export function useThemeWave() {
   const changeTheme = useContext(ThemeContext);
   if (!changeTheme) throw new Error("useThemeWave must be used inside ThemeProvider");
   return changeTheme;
+}
+
+export function useCatSequence() {
+  const sequence = useContext(CatSequenceContext);
+  if (!sequence) throw new Error("useCatSequence must be used inside ThemeProvider");
+  return sequence;
 }

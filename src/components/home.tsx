@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, ArrowDownRight, ArrowUpRight, Asterisk, Mail, Smartphone } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Asterisk, Mail, Smartphone } from "lucide-react";
 import { content, gameData, site, type Locale } from "@/lib/content";
 import { projectStories } from "@/lib/project-stories";
 import { Header } from "./header";
@@ -25,13 +25,12 @@ export function Home({ locale }: { locale: Locale }) {
           </div>
           <PaperPlayground locale={locale} />
         </div>
-        <div className="hero-bottom"><span className="eyebrow">{t.location}</span><a className="eyebrow" href="#games">{t.scroll}<ArrowDown size={16} /></a></div>
       </section>
 
       <div className="manifesto-strip" aria-hidden="true"><div className="container">{t.strip.map((item) => <span key={item}><Asterisk size={25} strokeWidth={1.4} />{item}</span>)}</div></div>
 
       <section id="games" className="games-section container section-space" aria-labelledby="games-heading">
-        <div className="section-heading"><div><p className="eyebrow section-label">{t.gamesLabel}</p><h2 id="games-heading">{t.gamesTitle}</h2></div><p className="section-intro">{t.gamesIntro}</p></div>
+        <div className="section-heading"><div><p className="eyebrow section-label">{t.gamesLabel}</p><h2 id="games-heading">{t.gamesTitle}</h2></div></div>
         <div className="games-grid">{gameData(locale).map((game) => <article id={game.id} className={`game-card ${game.id}`} key={game.id}>
           <a className="game-art" href={game.url} target="_blank" rel="noopener noreferrer" aria-label={`${game.name} — ${t.appStore}`}>
             <div className="game-art-meta"><span>GAME / {game.number}</span><span>iOS <ArrowUpRight size={14} /></span></div>
