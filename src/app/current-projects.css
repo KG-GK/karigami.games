@@ -1,0 +1,32 @@
+.current-projects-section { border-top: 1px solid var(--line); }
+.current-project-grid { display: grid; }
+.current-project { display: grid; grid-template-columns: minmax(0, 1fr) 280px; align-items: center; gap: 48px; min-width: 0; padding-block: 34px; border-top: 1px solid var(--line); }
+.current-project:last-child { padding-bottom: 0; }
+.current-project-content { min-width: 0; }
+.current-project-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-bottom: 16px; }
+.current-project-meta .eyebrow { font-size: 9px; letter-spacing: 1px; color: var(--muted); }
+.current-project-status { display: inline-flex; align-items: center; gap: 7px; font-size: 10px; color: var(--muted); }
+.current-project-status .status-dot { width: 5px; height: 5px; }
+.current-project-gallery { position: relative; display: flex; align-items: center; justify-content: center; width: 260px; min-height: 180px; justify-self: end; isolation: isolate; }
+.current-project-gallery-stack { height: 250px; }
+.current-project-image { --card-angle: -5deg; position: relative; display: block; flex-shrink: 0; width: 190px; padding: 6px 6px 22px; border: 1px solid var(--surface-border); background: var(--raised); box-shadow: 2px 8px 16px -9px var(--deep-shadow); transform: rotate(var(--card-angle)); transition: transform 220ms ease, box-shadow 220ms ease; }
+.current-project-image::before { content: ""; position: absolute; width: 44px; height: 15px; left: calc(50% - 22px); top: -9px; background: var(--tape); transform: rotate(4deg); pointer-events: none; }
+.current-project:nth-child(2) .current-project-image { --card-angle: 5deg; }
+.current-project-gallery-stack .current-project-image { position: absolute; top: 16px; left: 4px; --card-angle: -9deg; }
+.current-project-gallery-stack .current-project-image:nth-child(2) { top: 88px; left: auto; right: 4px; --card-angle: 7deg; }
+.current-project-image img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: var(--surface); }
+.current-project-expand { position: absolute; right: 7px; bottom: 5px; display: flex; color: var(--muted); }
+.current-project-image:hover, .current-project-image:focus-visible { z-index: 2; transform: translateY(-5px) rotate(0deg); box-shadow: 3px 13px 20px -9px var(--deep-shadow); }
+.current-project-image:hover .current-project-expand { color: var(--ink); }
+.current-project-copy h3 { font-size: clamp(30px, 3vw, 40px); letter-spacing: -1.4px; line-height: 1.2; font-weight: 650; margin-bottom: 14px; overflow-wrap: anywhere; }
+.current-project-copy p { max-width: 640px; font-size: 14px; line-height: 1.8; color: var(--muted); margin-bottom: 0; }
+@media (max-width: 700px) {
+  .current-project { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 28px; }
+  .current-project-gallery { width: 230px; min-height: 155px; margin-right: 6px; }
+  .current-project-gallery-stack { height: 215px; }
+  .current-project-image { width: 158px; }
+  .current-project-gallery-stack .current-project-image:nth-child(2) { top: 74px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .current-project-image, .current-project-expand { transition: none; }
+}

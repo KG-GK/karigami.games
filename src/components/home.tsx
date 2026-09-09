@@ -7,6 +7,7 @@ import { Footer } from "./footer";
 import { ProjectNotebook } from "./project-notebook";
 import { PaperPlayground } from "./paper-playground";
 import { CopyEmail } from "./copy-email";
+import { CurrentProjects } from "./current-projects";
 import { withWaveText } from "./wave-text";
 
 export function Home({ locale }: { locale: Locale }) {
@@ -51,7 +52,7 @@ export function Home({ locale }: { locale: Locale }) {
 
       <section id="current-projects" className="current-projects-section container section-space" aria-labelledby="current-projects-heading">
         <div className="section-heading"><div><p className="eyebrow section-label">{t.currentLabel}</p><h2 id="current-projects-heading">{t.currentTitle}</h2></div><p className="section-intro">{t.currentIntro}</p></div>
-        <div className="workbench-note"><span className="workbench-sketch" aria-hidden="true"><Asterisk size={76} strokeWidth={.9} /></span><div><p className="eyebrow">WORK IN PROGRESS</p><h3>{t.currentSoon}</h3><p>{t.currentSoonBody}</p></div></div>
+        <CurrentProjects locale={locale} />
       </section>
 
       <section id="about" className="about-section" aria-labelledby="about-heading"><div className="container about-grid">
