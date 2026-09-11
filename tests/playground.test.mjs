@@ -15,6 +15,7 @@ let reduced = false;
 window.matchMedia = (media) => ({ media, matches: reduced, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {} });
 const { PaperPlayground } = await import("../src/components/paper-playground.tsx");
 const { ThemeProvider } = await import("../src/components/theme-provider.tsx");
+const { glyphDelay, waveGeometry } = await import("../src/lib/theme.mjs");
 let root;
 
 async function render(locale = "en") {
@@ -35,6 +36,8 @@ afterEach(async () => {
   reduced = false;
   delete document.startViewTransition;
   delete document.documentElement.animate;
+  delete HTMLElement.prototype.animate;
+  delete document.fonts;
 });
 after(() => dom.window.close());
 
@@ -180,4 +183,77 @@ test("German hints and font announcements are localized, including with reduced 
   await click(".cat-tail-button");
   assert.equal(document.querySelector("[role='status']").textContent, "Pixel-Schrift aktiviert.");
   assert.equal(document.querySelector(".cat-hint"), null);
+});
+
+test("the font wave starts at the tail, measures glyphs after reflow, and locks out theme changes", async () => {
+  await render();
+  const origin = { x: 760, y: 430 };
+  document.querySelector(".cat-tail-origin").getBoundingClientRect = () => ({ left: origin.x, top: origin.y, width: 0, height: 0 });
+  const glyph = document.querySelector(".cat-hint .wave-glyph");
+  const text = glyph.closest("[data-wave-text]");
+  const rect = { left: 100, top: 100, right: 300, bottom: 120, width: 200, height: 20 };
+  text.getBoundingClientRect = () => rect;
+  text.getClientRects = () => [rect];
+  glyph.getBoundingClientRect = () => {
+    const x = document.documentElement.dataset.font === "pixel" ? 500 : 20;
+    return { x, y: 100, width: 10, height: 10, left: x, right: x + 10, top: 100, bottom: 110 };
+  };
+  let finishReveal;
+  const animations = [];
+  HTMLElement.prototype.animate = function (frames, options) {
+    animations.push({ element: this, frames, options });
+    return { finished: this === document.documentElement ? new Promise(resolve => { finishReveal = resolve; }) : Promise.resolve(), cancel() {} };
+  };
+  document.startViewTransition = (update) => {
+    update();
+    return { ready: Promise.resolve(), finished: Promise.resolve(), updateCallbackDone: Promise.resolve(), skipTransition() { finishReveal?.(); } };
+  };
+  await click(".cat-tail-button");
+  assert.equal(document.documentElement.dataset.font, "pixel");
+  assert.equal(document.documentElement.dataset.theme, "paper");
+  assert.equal(document.documentElement.dataset.styleWaveKind, "font");
+  assert.equal(document.documentElement.style.getPropertyValue("--wave-x"), "760px");
+  const reveal = animations.find(item => item.element === document.documentElement);
+  assert.equal(reveal.frames.clipPath[0], "circle(0px at 760px 430px)");
+  assert.equal(animations.find(item => item.element === glyph).options.delay, glyphDelay({ x: 505, y: 105 }, waveGeometry(origin, 1280, 800)));
+  await click(".cat-button");
+  await click(".cat-tail-button");
+  assert.equal(document.documentElement.dataset.theme, "paper");
+  assert.equal(document.documentElement.dataset.font, "pixel");
+  assert.equal(stage(), "0");
+  await act(async () => finishReveal());
+  assert.equal(document.querySelector(".cat-tail-button").disabled, false);
+  assert.equal(document.documentElement.dataset.styleWaveKind, undefined);
+  assert.equal(document.documentElement.style.getPropertyValue("--wave-x"), "");
+});
+
+test("font files load before capture and blocked extra clicks cannot skip a font", async () => {
+  await render();
+  let fontsReady;
+  const pendingFonts = new Promise(resolve => { fontsReady = resolve; });
+  const loads = [];
+  Object.defineProperty(document, "fonts", { configurable: true, value: { load: (font) => { loads.push(font); return pendingFonts; } } });
+  await click(".cat-tail-button");
+  assert.equal(document.documentElement.dataset.font, undefined);
+  assert.equal(loads.length, 2);
+  assert.ok(loads.every(font => font.includes("Pixelify Sans Variable")));
+  assert.equal(document.querySelector(".cat-button").disabled, true);
+  await click(".cat-tail-button");
+  await act(async () => fontsReady([]));
+  assert.equal(document.documentElement.dataset.font, "pixel");
+  assert.equal(document.querySelector(".cat-button").disabled, false);
+});
+
+test("a rejected font-wave capture still applies the chosen font and releases the controls", async () => {
+  await render();
+  document.documentElement.animate = () => { throw new Error("Capture should fail first"); };
+  document.startViewTransition = (update) => {
+    update();
+    return { ready: Promise.reject(new Error("Capture skipped")), finished: Promise.resolve(), updateCallbackDone: Promise.resolve(), skipTransition() {} };
+  };
+  await click(".cat-tail-button");
+  assert.equal(document.documentElement.dataset.font, "pixel");
+  assert.equal(document.documentElement.dataset.theme, "paper");
+  assert.equal(document.querySelector(".cat-tail-button").disabled, false);
+  assert.equal(document.documentElement.dataset.themeTransition, undefined);
 });

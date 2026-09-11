@@ -111,7 +111,7 @@
 
 .wave-text, .wave-glyph { position: relative; }
 
-/* Keep both full-color views opaque; reveal the live new view from the cat. */
+/* Keep both style snapshots opaque; reveal the new palette or font radially. */
 html[data-theme-transition="active"]::view-transition-old(root),
 html[data-theme-transition="active"]::view-transition-new(root) {
   animation: none;

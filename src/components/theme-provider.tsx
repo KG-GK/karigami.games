@@ -1,12 +1,16 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useReducer, useRef, type ReactNode } from "react";
-import { glyphDelay, glyphDuration, nextTheme, themeBackgrounds, themeStorageKey, waveDuration, waveGeometry } from "@/lib/theme.mjs";
+import { glyphDelay, glyphDuration, nextFont, nextTheme, themeBackgrounds, themeStorageKey, waveDuration, waveGeometry } from "@/lib/theme.mjs";
 
 type Theme = keyof typeof themeBackgrounds;
 type Origin = { x: number; y: number };
 type ChangeTheme = (origin: Origin) => Promise<Theme | null>;
+type Font = "default" | "pixel" | "serif";
+type ChangeFont = (origin: Origin) => Promise<Font | null>;
+type StyleChange = { kind: "theme" | "font"; apply: () => void; prepare?: () => Promise<unknown> };
 const ThemeContext = createContext<ChangeTheme | null>(null);
+const FontContext = createContext<ChangeFont | null>(null);
 type CatTrigger = "theme" | "tail";
 const CatSequenceContext = createContext<{ stage: number; advance: (trigger: CatTrigger) => void } | null>(null);
 
@@ -43,45 +47,51 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const busy = useRef(false);
   const animations = useRef<Animation[]>([]);
   const activeTransition = useRef<ViewTransition | null>(null);
+  const disposed = useRef(false);
 
   useEffect(() => {
+    disposed.current = false;
     const current = document.documentElement.dataset.theme as Theme;
     if (current in themeBackgrounds) document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeBackgrounds[current]);
     return () => {
+      disposed.current = true;
       activeTransition.current?.skipTransition();
       animations.current.forEach((animation) => animation.cancel());
       delete document.documentElement.dataset.themeTransition;
       delete document.documentElement.dataset.themeWave;
+      delete document.documentElement.dataset.styleWaveKind;
     };
   }, []);
 
-  const cycleTheme = useCallback<ChangeTheme>(async (origin) => {
-    if (busy.current) return null;
+  const runWave = useCallback(async (origin: Origin, change: StyleChange) => {
+    if (busy.current) return false;
     busy.current = true;
     const root = document.documentElement;
-    const theme = nextTheme(root.dataset.theme ?? "paper") as Theme;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let stopMotion: (() => void) | undefined;
 
     try {
+      if (change.prepare) await change.prepare();
+      if (disposed.current) return false;
       if (reducedMotion.matches || !document.startViewTransition || typeof root.animate !== "function" || document.hidden) {
-        applyTheme(theme);
-        return theme;
+        change.apply();
+        return true;
       }
 
       const wave = waveGeometry(origin, innerWidth, innerHeight);
-      const glyphs = visibleGlyphs(wave);
       root.style.setProperty("--wave-x", `${wave.x}px`);
       root.style.setProperty("--wave-y", `${wave.y}px`);
       root.style.setProperty("--wave-radius", `${wave.radius}px`);
       root.style.setProperty("--wave-duration", `${waveDuration}ms`);
       root.dataset.themeTransition = "active";
+      root.dataset.styleWaveKind = change.kind;
 
-      const transition = document.startViewTransition(() => applyTheme(theme));
+      const apply = () => { if (!disposed.current) change.apply(); };
+      const transition = document.startViewTransition(apply);
       activeTransition.current = transition;
       // Attach rejection handlers immediately: a background tab or resize can skip capture.
       const finished = transition.finished.catch(() => undefined);
-      transition.updateCallbackDone.catch(() => applyTheme(theme));
+      transition.updateCallbackDone.catch(apply);
 
       stopMotion = () => {
         if (!reducedMotion.matches) return;
@@ -92,7 +102,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
       try {
         await transition.ready;
-        if (reducedMotion.matches) { transition.skipTransition(); return theme; }
+        if (reducedMotion.matches || disposed.current) { transition.skipTransition(); return !disposed.current; }
+
+        // A font change can move and rewrap text, so measure the new layout.
+        const glyphs = visibleGlyphs(wave);
 
         const reveal = root.animate(
           { clipPath: [`circle(0px at ${wave.x}px ${wave.y}px)`, `circle(${wave.radius}px at ${wave.x}px ${wave.y}px)`] },
@@ -115,15 +128,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         await Promise.allSettled(animations.current.map((animation) => animation.finished));
       } catch {
         // Capture and animation support vary; never leave the user between themes.
-        applyTheme(theme);
+        apply();
         transition.skipTransition();
       }
       await finished;
-      return theme;
+      return !disposed.current;
     } catch {
-      applyTheme(theme);
+      if (!disposed.current) change.apply();
       activeTransition.current?.skipTransition();
-      return theme;
+      return !disposed.current;
     } finally {
       if (stopMotion) reducedMotion.removeEventListener("change", stopMotion);
       animations.current.forEach((animation) => animation.cancel());
@@ -131,18 +144,43 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       activeTransition.current = null;
       delete root.dataset.themeTransition;
       delete root.dataset.themeWave;
+      delete root.dataset.styleWaveKind;
       for (const property of ["--wave-x", "--wave-y", "--wave-radius", "--wave-duration"]) root.style.removeProperty(property);
       busy.current = false;
     }
   }, []);
 
-  return <ThemeContext.Provider value={cycleTheme}><CatSequenceContext.Provider value={{ stage: catStage, advance: advanceCat }}>{children}</CatSequenceContext.Provider><div className="theme-wave-ring" aria-hidden="true" /></ThemeContext.Provider>;
+  const cycleTheme = useCallback<ChangeTheme>(async (origin) => {
+    const theme = nextTheme(document.documentElement.dataset.theme ?? "paper") as Theme;
+    return await runWave(origin, { kind: "theme", apply: () => applyTheme(theme) }) ? theme : null;
+  }, [runWave]);
+
+  const cycleFont = useCallback<ChangeFont>(async (origin) => {
+    const font = nextFont(document.documentElement.dataset.font ?? "default") as Font;
+    const families = { default: ["Manrope Variable", "DM Sans Variable"], pixel: ["Pixelify Sans Variable"], serif: ["Times New Roman"] }[font];
+    const applied = await runWave(origin, {
+      kind: "font",
+      prepare: async () => {
+        if (document.fonts?.load) await Promise.allSettled(families.flatMap((family) => [400, 700].map((weight) => document.fonts.load(`${weight} 16px "${family}"`))));
+      },
+      apply: () => { document.documentElement.dataset.font = font; },
+    });
+    return applied ? font : null;
+  }, [runWave]);
+
+  return <ThemeContext.Provider value={cycleTheme}><FontContext.Provider value={cycleFont}><CatSequenceContext.Provider value={{ stage: catStage, advance: advanceCat }}>{children}</CatSequenceContext.Provider></FontContext.Provider><div className="theme-wave-ring" aria-hidden="true" /></ThemeContext.Provider>;
 }
 
 export function useThemeWave() {
   const changeTheme = useContext(ThemeContext);
   if (!changeTheme) throw new Error("useThemeWave must be used inside ThemeProvider");
   return changeTheme;
+}
+
+export function useFontWave() {
+  const changeFont = useContext(FontContext);
+  if (!changeFont) throw new Error("useFontWave must be used inside ThemeProvider");
+  return changeFont;
 }
 
 export function useCatSequence() {

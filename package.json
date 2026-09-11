@@ -8,10 +8,12 @@
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --tsconfig tests/tsconfig.json --test tests/site.test.mjs tests/theme.test.mjs tests/notebook.test.mjs tests/playground.test.mjs",
+    "test": "tsx --tsconfig tests/tsconfig.json --test tests/site.test.mjs tests/theme.test.mjs tests/notebook.test.mjs tests/playground.test.mjs tests/gallery.test.mjs tests/brand.test.mjs",
     "test:theme": "node --test tests/theme.test.mjs",
     "test:notebook": "tsx --tsconfig tests/tsconfig.json --test tests/notebook.test.mjs",
-    "test:playground": "tsx --tsconfig tests/tsconfig.json --test tests/playground.test.mjs"
+    "test:playground": "tsx --tsconfig tests/tsconfig.json --test tests/playground.test.mjs",
+    "test:gallery": "tsx --tsconfig tests/tsconfig.json --test tests/gallery.test.mjs",
+    "test:brand": "tsx --tsconfig tests/tsconfig.json --test tests/brand.test.mjs"
   },
   "engines": {
     "node": ">=20.9.0"

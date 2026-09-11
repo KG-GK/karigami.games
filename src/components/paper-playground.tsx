@@ -4,7 +4,7 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/reac
 import { MoveUpRight } from "lucide-react";
 import { useRef, useState, type PointerEvent, type MouseEvent } from "react";
 import { content, type Locale } from "@/lib/content";
-import { useCatSequence, useThemeWave } from "./theme-provider";
+import { useCatSequence, useFontWave, useThemeWave } from "./theme-provider";
 import { withWaveText } from "./wave-text";
 
 export function PaperPlayground({ locale }: { locale: Locale }) {
@@ -13,8 +13,10 @@ export function PaperPlayground({ locale }: { locale: Locale }) {
   const { stage, advance } = useCatSequence();
   const [transitioning, setTransitioning] = useState(false);
   const [announcement, setAnnouncement] = useState("");
-  const changingTheme = useRef(false);
+  const changingStyle = useRef(false);
+  const tailOrigin = useRef<HTMLSpanElement>(null);
   const cycleTheme = useThemeWave();
+  const cycleFont = useFontWave();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useSpring(y, { stiffness: 85, damping: 18 });
@@ -28,8 +30,8 @@ export function PaperPlayground({ locale }: { locale: Locale }) {
   }
 
   async function changeTheme(event: MouseEvent<HTMLButtonElement>) {
-    if (changingTheme.current) return;
-    changingTheme.current = true;
+    if (changingStyle.current) return;
+    changingStyle.current = true;
     setTransitioning(true);
     x.set(0);
     y.set(0);
@@ -41,19 +43,28 @@ export function PaperPlayground({ locale }: { locale: Locale }) {
         setAnnouncement(t.themeNames[theme]);
       }
     } finally {
-      changingTheme.current = false;
+      changingStyle.current = false;
       setTransitioning(false);
     }
   }
 
-  function changeFont() {
-    if (changingTheme.current) return;
-    const fonts = ["default", "pixel", "serif"] as const;
-    const current = fonts.findIndex((font) => font === document.documentElement.dataset.font);
-    const next = fonts[(Math.max(0, current) + 1) % fonts.length];
-    document.documentElement.dataset.font = next;
-    advance("tail");
-    setAnnouncement(t.fontNames[next]);
+  async function changeFont() {
+    if (changingStyle.current || !tailOrigin.current) return;
+    changingStyle.current = true;
+    setTransitioning(true);
+    x.set(0);
+    y.set(0);
+    const bounds = tailOrigin.current.getBoundingClientRect();
+    try {
+      const font = await cycleFont({ x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 });
+      if (font) {
+        advance("tail");
+        setAnnouncement(t.fontNames[font]);
+      }
+    } finally {
+      changingStyle.current = false;
+      setTransitioning(false);
+    }
   }
 
   const hint = stage === 1 ? t.catFallen : stage === 2 ? t.catRevived : t.catHint;
@@ -66,7 +77,7 @@ export function PaperPlayground({ locale }: { locale: Locale }) {
       <motion.span className="cat-tilt" style={reduceMotion ? undefined : { rotateX, rotateY }}>
         <span className="origami-cat">
           <button type="button" className="cat-button" aria-label={t.catLabel} aria-describedby={stage < 3 ? "cat-theme-hint" : undefined} aria-busy={transitioning} disabled={transitioning} onClick={changeTheme} />
-          <span className="cat-tail"><button type="button" className="cat-tail-button" aria-label={t.catTailLabel} aria-describedby={stage === 3 ? "cat-tail-hint" : undefined} disabled={transitioning} onClick={changeFont}><span className="cat-tail-front" aria-hidden="true" /><span className="cat-tail-fold" aria-hidden="true" /></button></span>
+          <span className="cat-tail"><button type="button" className="cat-tail-button" aria-label={t.catTailLabel} aria-describedby={stage === 3 ? "cat-tail-hint" : undefined} aria-busy={transitioning} disabled={transitioning} onClick={changeFont}><span className="cat-tail-front" aria-hidden="true" /><span className="cat-tail-fold" aria-hidden="true" /><span ref={tailOrigin} className="cat-tail-origin" aria-hidden="true" /></button></span>
           <span className="cat-body-art" aria-hidden="true">
             <span className="cat-body" />
             <span className="cat-back-fold" />

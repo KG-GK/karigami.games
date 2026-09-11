@@ -14,6 +14,7 @@ export function Home({ locale }: { locale: Locale }) {
   const t = content[locale];
   const stories = projectStories(locale);
   return withWaveText(<>
+    <div id="top" aria-hidden="true" />
     <Header locale={locale} />
     <main id="main">
       <section className="hero container" aria-labelledby="hero-heading">

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Brand } from "./brand";
+import { BrandLink } from "./brand-link";
 import { withWaveText } from "./wave-text";
 import { content, site, type Locale } from "@/lib/content";
 
@@ -25,7 +25,7 @@ export function Header({ locale, alternate }: { locale: Locale; alternate?: stri
     <a className="skip-link" href="#main">{t.skip}</a>
     <header className="site-header">
       <div className="header-inner container">
-        <Link className="brand" href={t.home} aria-label={`Karigami — ${locale === "de" ? "Startseite" : "Home"}`}><Brand /></Link>
+        <BrandLink locale={locale} onActivate={() => setOpen(false)} />
         <nav className="desktop-nav" aria-label={locale === "de" ? "Hauptnavigation" : "Main navigation"}>
           <Link href={`${t.home}#games`}>Games</Link>
           <Link href={`${t.home}#current-projects`}>{t.currentNav}</Link>

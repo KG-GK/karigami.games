@@ -12,6 +12,9 @@ test("both homepages render the games, accessible navigation, and correct langua
     assert.match(html, new RegExp(`<html lang="${language}"`));
     assert.ok(html.includes(headline));
     assert.match(html, /id="main"/);
+    assert.match(html, /id="top"/);
+    assert.ok(html.includes(`href="${route === "/" ? "/" : "/en"}#top"`));
+    assert.match(html, /data-brand-layout="horizontal"/);
     assert.match(html, /id="games"/);
     assert.match(html, /id="current-projects"/);
     assert.match(html, /id="about"/);
@@ -29,10 +32,13 @@ test("both homepages render the games, accessible navigation, and correct langua
 test("homepages include the new project section, hero links, and all eight stories without client JavaScript", async () => {
   for (const [route, current, explore, meet] of [["/", "Aktuelle Projekte", "Games entdecken", "Mehr über mich"], ["/en", "Current projects", "Explore games", "Learn about me"]]) {
     const html = await (await fetch(`${base}${route}`)).text();
-    for (const text of [current, explore, meet, "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
+    for (const text of [current, explore, meet, "Adeltuner", "WorldBuilder", "ScoreWriter", "Gravity Puzzle", "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
       assert.ok(html.includes(text), `${route}: ${text}`);
     }
     assert.match(html, /href="#current-projects"/);
+    assert.equal((html.match(/class="current-project-image"/g) ?? []).length, 7);
+    assert.match(html, /aria-haspopup="dialog"/);
+    assert.doesNotMatch(html, /href="\/assets\/projects\//);
     assert.match(html, /class="notebook-cover|class="idea-note notebook-cover/);
     assert.match(html, /<noscript><div class="notebook-fallback">/);
     assert.doesNotMatch(html, /INDEPENDENTLY MADE\. FULL OF CHARACTER\.|Meet the maker|Good ideas fit/);

@@ -11,6 +11,7 @@ export const site = {
 export const content = {
   de: {
     home: "/", otherLocale: "/en", otherLanguage: "Read in English",
+    brandHome: "Karigami — Zur Startseite und Logo neu anordnen",
     aboutNav: "Über mich", contactNav: "Kontakt", menu: "Menü öffnen", closeMenu: "Menü schließen", skip: "Zum Inhalt",
     eyebrow: "Aus neugierigen Ideen werden kleine Welten.",
     headline: ["Kleine Games.", "Große", "Spielfreude."],
@@ -28,7 +29,7 @@ export const content = {
     itchHeading: "Noch neugierig?", itchDescription: "Mehr von Karigami findest du auf itch.io.", itchCta: "Zu meinem itch.io",
     currentLabel: "02 / AKTUELLE PROJEKTE", currentTitle: "Auf meinem\nSchreibtisch.",
     currentIntro: "Games, Tools und Experimente, an denen ich gerade tüftle.",
-    currentStatus: "In Entwicklung", currentViewImage: "Bild öffnen",
+    currentStatus: "In Entwicklung", currentViewImage: "Bild vergrößern", currentCloseImage: "Kärtchen zurücklegen",
     aboutLabel: "03 / ABOUT ME", aboutTitle: "Hey, ich bin KG.",
     aboutLead: "Full Stack & Game Developer.",
     aboutBody: "Karigami ist mein Platz für Games, auf die ich gerade Lust habe. Meistens sind es seltsame Ideen, die mir unter der Dusche einfallen. Oder Dinge, von denen ich mir wünsche, dass es sie schon gäbe. Besonders gerne entwerfe ich tiefgehende Gameplay-Systeme und experimentiere mit spaßigen, ungewöhnlichen Mechaniken.",
@@ -45,6 +46,7 @@ export const content = {
   },
   en: {
     home: "/en", otherLocale: "/", otherLanguage: "Auf Deutsch lesen",
+    brandHome: "Karigami — Back to the homepage and rearrange the logo",
     aboutNav: "About me", contactNav: "Contact", menu: "Open menu", closeMenu: "Close menu", skip: "Skip to content",
     eyebrow: "Turning curious ideas into little worlds.",
     headline: ["Little games.", "Big on", "play."],
@@ -62,7 +64,7 @@ export const content = {
     itchHeading: "Still curious?", itchDescription: "Find more from Karigami on itch.io.", itchCta: "Visit my itch.io",
     currentLabel: "02 / CURRENT PROJECTS", currentTitle: "On my\nworkbench.",
     currentIntro: "Games, tools, and experiments I’m working on right now.",
-    currentStatus: "In development", currentViewImage: "Open image",
+    currentStatus: "In development", currentViewImage: "Enlarge image", currentCloseImage: "Put the card back",
     aboutLabel: "03 / ABOUT ME", aboutTitle: "Hey, I’m KG.",
     aboutLead: "Full Stack & Game Developer.",
     aboutBody: "Karigami is my space for the games I feel like making. Usually, they start as strange ideas that come to me in the shower. Or things I wish already existed. I particularly enjoy designing deep gameplay systems & experimenting with fun and unique mechanics.",

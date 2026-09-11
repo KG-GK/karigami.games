@@ -1,4 +1,5 @@
 export const themes = ["paper", "ink", "red"];
+export const fonts = ["default", "pixel", "serif"];
 export const themeBackgrounds = { paper: "#f7f5ef", ink: "#20211d", red: "#d6402a" };
 export const themeStorageKey = "karigami-theme";
 export const waveDuration = 1150;
@@ -7,6 +8,11 @@ export const glyphDuration = 180;
 export function nextTheme(current) {
   const index = themes.indexOf(current);
   return themes[(Math.max(0, index) + 1) % themes.length];
+}
+
+export function nextFont(current) {
+  const index = fonts.indexOf(current);
+  return fonts[(Math.max(0, index) + 1) % fonts.length];
 }
 
 export function waveGeometry(origin, width, height) {

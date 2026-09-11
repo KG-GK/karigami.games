@@ -1,0 +1,33 @@
+.brand { display: inline-flex; align-items: center; }
+.brand-link { width: 184px; height: 64px; flex-shrink: 0; }
+.brand-art { --brand-word-size: 27px; --brand-icon-size: 38px; display: flex; align-items: center; width: 100%; height: 100%; }
+.brand-visual { display: grid; grid-template-areas: "icon kari gami"; grid-template-columns: calc(var(--brand-icon-size) + 8px) max-content max-content; align-items: center; width: max-content; animation: brand-unfold 260ms ease-out both; }
+.brand-art .brand-symbol { grid-area: icon; width: var(--brand-icon-size); height: var(--brand-icon-size); }
+.brand-art .wordmark { font-family: var(--display); font-size: var(--brand-word-size); font-weight: 800; letter-spacing: -1.2px; line-height: 1; white-space: nowrap; }
+.wordmark-kari { grid-area: kari; }
+.wordmark-gami { grid-area: gami; }
+.wordmark-dot { color: var(--red); }
+.brand-art[data-brand-layout="between"] .brand-visual { grid-template-areas: "kari icon gami"; grid-template-columns: max-content calc(var(--brand-icon-size) + 6px) max-content; }
+.brand-art[data-brand-layout="between"] .brand-symbol { justify-self: center; }
+.brand-art[data-brand-layout="above"] { --brand-word-size: 18px; --brand-icon-size: 42px; }
+.brand-art[data-brand-layout="above"] .brand-visual { grid-template-areas: "icon icon" "kari gami"; grid-template-columns: max-content max-content; row-gap: 2px; margin-inline: auto; }
+.brand-art[data-brand-layout="above"] .brand-symbol { justify-self: center; }
+.brand-art[data-brand-layout="above"] .wordmark-dot { display: none; }
+.brand-art[data-brand-layout="split"] { --brand-word-size: 29px; --brand-icon-size: 58px; }
+.brand-art[data-brand-layout="split"] .brand-visual { grid-template-areas: "icon kari" "icon gami"; grid-template-columns: calc(var(--brand-icon-size) + 8px) max-content; }
+@keyframes brand-unfold { from { opacity: .6; transform: translateY(3px) rotate(-2deg); } to { opacity: 1; transform: translateY(0) rotate(0deg); } }
+@media (min-width: 801px) and (max-width: 1000px) {
+  .site-header .header-inner { gap: 18px; }
+  .site-header .brand-link { width: 168px; }
+  .site-header .desktop-nav { gap: 16px; margin-left: auto; }
+  .site-header .header-actions { gap: 14px; }
+}
+@media (max-width: 800px) {
+  .brand-link { width: 145px; height: 58px; }
+  .brand-art { --brand-word-size: 23px; --brand-icon-size: 32px; }
+  .brand-art[data-brand-layout="above"] { --brand-word-size: 17px; --brand-icon-size: 37px; }
+  .brand-art[data-brand-layout="split"] { --brand-word-size: 25px; --brand-icon-size: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-visual { animation: none; }
+}
