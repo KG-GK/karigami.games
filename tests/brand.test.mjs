@@ -82,3 +82,52 @@ test("activating the logo closes the mobile menu and reduced motion jumps direct
   assert.match(logo().getAttribute("aria-label"), /homepage/);
   assert.equal(logo().querySelector(":scope > .brand-art > .sr-only").textContent, "karigami");
 });
+
+test("header links disclose all profiles and dismiss with Escape, outside clicks, and focus leaving", async () => {
+  await render("de", "/");
+  const toggle = document.querySelector(".header-links-toggle");
+  const dropdown = document.getElementById("social-links");
+  assert.equal(dropdown.hidden, true);
+  assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  await click(toggle);
+  assert.equal(dropdown.hidden, false);
+  assert.equal(toggle.getAttribute("aria-expanded"), "true");
+  const links = [...dropdown.querySelectorAll("a")];
+  assert.deepEqual(links.map(link => link.href), [
+    "https://www.youtube.com/@Karigami-i9l",
+    "https://www.instagram.com/karigami_games/?utm_source=ig_web_button_share_sheet",
+    "https://karigami.itch.io/",
+  ]);
+  for (const link of links) {
+    assert.equal(link.target, "_blank");
+    assert.equal(link.rel, "noopener noreferrer");
+  }
+  await act(() => links[0].focus());
+  assert.equal(dropdown.hidden, false);
+  await act(() => document.dispatchEvent(new dom.window.KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
+  assert.equal(dropdown.hidden, true);
+  assert.equal(document.activeElement, toggle);
+  await click(toggle);
+  await act(() => document.body.dispatchEvent(new dom.window.Event("pointerdown", { bubbles: true })));
+  assert.equal(dropdown.hidden, true);
+  await click(toggle);
+  await act(() => links[0].focus());
+  await act(() => document.querySelector(".language-link").focus());
+  assert.equal(dropdown.hidden, true);
+});
+
+test("both locales expose the same profiles in the mobile menu and close it after selection", async () => {
+  for (const locale of ["de", "en"]) {
+    await render(locale);
+    await click(document.querySelector(".menu-toggle"));
+    const mobile = document.getElementById("mobile-navigation");
+    const profiles = [...mobile.querySelectorAll('a[target="_blank"]')];
+    assert.equal(mobile.hidden, false);
+    assert.equal(profiles.length, 3);
+    assert.deepEqual(profiles.map(link => link.href), [...document.querySelectorAll("#social-links a")].map(link => link.href));
+    await click(profiles[0]);
+    assert.equal(mobile.hidden, true);
+    await act(() => root.unmount());
+    root = undefined;
+  }
+});

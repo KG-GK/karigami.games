@@ -6,15 +6,24 @@ export const site = {
   email: "contact@karigami.games",
   url: "https://www.karigami.games",
   itch: "https://karigami.itch.io/",
+  youtube: "https://www.youtube.com/@Karigami-i9l",
+  instagram: "https://www.instagram.com/karigami_games/?utm_source=ig_web_button_share_sheet",
 };
+
+export const socialLinks = [
+  { label: "YouTube", href: site.youtube },
+  { label: "Instagram", href: site.instagram },
+  { label: "itch.io", href: site.itch },
+] as const;
 
 export const content = {
   de: {
     home: "/", otherLocale: "/en", otherLanguage: "Read in English",
     brandHome: "Karigami — Zur Startseite und Logo neu anordnen",
+    socialLinks: "Social Media & Links",
     aboutNav: "Über mich", contactNav: "Kontakt", menu: "Menü öffnen", closeMenu: "Menü schließen", skip: "Zum Inhalt",
     eyebrow: "Aus neugierigen Ideen werden kleine Welten.",
-    headline: ["Kleine Games.", "Große", "Spielfreude."],
+    headline: ["Games.", "Worlds.", "Stories"],
     intro: "Entdecke meine bisherigen, aktuellen und kommenden Projekte.",
     explore: "Games entdecken", currentNav: "Aktuelle Projekte", meet: "Mehr über mich",
     catHint: "Neugierig? Versuch zu klicken!", catLabel: "Mit der Origami-Katze das Farbtheme wechseln", catNote: "NEUGIER HAT IHREN EIGENEN KOPF.",
@@ -34,7 +43,7 @@ export const content = {
     aboutLead: "Full Stack & Game Developer.",
     aboutBody: "Karigami ist mein Platz für Games, auf die ich gerade Lust habe. Meistens sind es seltsame Ideen, die mir unter der Dusche einfallen. Oder Dinge, von denen ich mir wünsche, dass es sie schon gäbe. Besonders gerne entwerfe ich tiefgehende Gameplay-Systeme und experimentiere mit spaßigen, ungewöhnlichen Mechaniken.",
     aboutEnd: "Von der ersten Idee bis zum letzten Feinschliff: Ich mache Spiele, weil ich Spiele liebe. Schön, dass du hier bist.",
-    maker: "DER KOPF HINTER KARIGAMI", note: "Meine Experimente\n& Erfahrungen", noteFooter: "Eine Seite, eine Anekdote",
+    note: "Meine Experimente\n& Erfahrungen", noteFooter: "Eine Seite, eine Anekdote",
     noteHint: "Klick für mehr", noteCover: "Das Titelblatt", noteOpen: "Projektgeschichten aufblättern", noteCollection: "Meine Experimente und Erfahrungen",
     notePrevious: "Vorherige Seite", noteNext: "Nächste Seite", noteBack: "Zum Titelblatt", noteStories: "8 kleine Geschichten", notePlay: "Spielen", notePage: "Seite", noteOf: "von",
     contactLabel: "04 / KONTAKT & SUPPORT", contactTitle: "Lass von dir hören.",
@@ -47,9 +56,10 @@ export const content = {
   en: {
     home: "/en", otherLocale: "/", otherLanguage: "Auf Deutsch lesen",
     brandHome: "Karigami — Back to the homepage and rearrange the logo",
+    socialLinks: "Social media & links",
     aboutNav: "About me", contactNav: "Contact", menu: "Open menu", closeMenu: "Close menu", skip: "Skip to content",
     eyebrow: "Turning curious ideas into little worlds.",
-    headline: ["Little games.", "Big on", "play."],
+    headline: ["Games.", "Worlds.", "Stories"],
     intro: "Have a look at my past, current, and future projects.",
     explore: "Explore games", currentNav: "Current projects", meet: "Learn about me",
     catHint: "Curious? Try clicking!", catLabel: "Change the color theme with the origami cat", catNote: "CURIOSITY HAS A MIND OF ITS OWN.",
@@ -69,7 +79,7 @@ export const content = {
     aboutLead: "Full Stack & Game Developer.",
     aboutBody: "Karigami is my space for the games I feel like making. Usually, they start as strange ideas that come to me in the shower. Or things I wish already existed. I particularly enjoy designing deep gameplay systems & experimenting with fun and unique mechanics.",
     aboutEnd: "From the first idea to the finishing touches: I make games because I love games. Glad you’re here.",
-    maker: "THE MIND BEHIND KARIGAMI", note: "My experiments\n& experiences", noteFooter: "One Page One Anecdote",
+    note: "My experiments\n& experiences", noteFooter: "One Page One Anecdote",
     noteHint: "click for more", noteCover: "The cover", noteOpen: "Open my project stories", noteCollection: "My experiments and experiences",
     notePrevious: "Previous page", noteNext: "Next page", noteBack: "Back to cover", noteStories: "8 little stories", notePlay: "Play", notePage: "Page", noteOf: "of",
     contactLabel: "04 / CONTACT & SUPPORT", contactTitle: "Let’s hear from you.",

@@ -58,7 +58,7 @@ export function Home({ locale }: { locale: Locale }) {
 
       <section id="about" className="about-section" aria-labelledby="about-heading"><div className="container about-grid">
         <div className="about-art"><p className="eyebrow">{t.aboutLabel}</p><ProjectNotebook locale={locale} stories={stories} /></div>
-        <div className="about-copy"><h2 id="about-heading">{t.aboutTitle}<span className="hello-asterisk" aria-hidden="true">✳</span></h2><p className="about-lead">{t.aboutLead}</p><p>{t.aboutBody}</p><p>{t.aboutEnd}</p><div className="signature"><span>Kaan.</span><span className="eyebrow">{t.maker}</span></div></div>
+        <div className="about-copy"><h2 id="about-heading">{t.aboutTitle}<span className="hello-asterisk" aria-hidden="true">✳</span></h2><p className="about-lead">{t.aboutLead}</p><p>{t.aboutBody}</p><p>{t.aboutEnd}</p></div>
       </div></section>
 
       <section id="support" className="contact-section container section-space" aria-labelledby="contact-heading"><p className="eyebrow section-label">{t.contactLabel}</p><div className="contact-heading"><h2 id="contact-heading">{t.contactTitle}</h2><ArrowDownRight size={75} strokeWidth={1} aria-hidden="true" /></div><p className="contact-intro">{t.contactBody}</p><div className="contact-email-row"><a className="contact-email" href={`mailto:${site.email}`}>{site.email}<ArrowUpRight aria-hidden="true" /></a><CopyEmail locale={locale} /></div><p className="support-note"><Mail size={16} />{t.supportNote}</p></section>

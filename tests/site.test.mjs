@@ -5,7 +5,7 @@ import { projectStories } from "../src/lib/project-stories.ts";
 const base = process.env.TEST_BASE_URL ?? "http://127.0.0.1:3000";
 
 test("both homepages render the games, accessible navigation, and correct language without client JS", async () => {
-  for (const [route, language, headline] of [["/", "de", "Kleine Games."], ["/en", "en", "Little games."]]) {
+  for (const [route, language, headline] of [["/", "de", "Games."], ["/en", "en", "Games."]]) {
     const response = await fetch(`${base}${route}`);
     assert.equal(response.status, 200);
     const html = await response.text();
