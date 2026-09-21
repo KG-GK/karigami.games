@@ -28,7 +28,7 @@ async function render(locale = "en") {
 async function click(selector) { await act(async () => { document.querySelector(selector).click(); }); }
 function stage() { return document.querySelector(".paper-playground").dataset.catStage; }
 function pose() { return document.querySelector(".paper-playground").dataset.catPose; }
-function hint() { return document.querySelector(".cat-hint .sr-only")?.textContent; }
+function hint() { return document.querySelector(".cat-hint .wave-text")?.textContent; }
 
 afterEach(async () => {
   if (root) await act(() => root.unmount());

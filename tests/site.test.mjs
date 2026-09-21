@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { JSDOM } from "jsdom";
 import { projectStories } from "../src/lib/project-stories.ts";
 
 const base = process.env.TEST_BASE_URL ?? "http://127.0.0.1:3000";
@@ -32,8 +33,11 @@ test("both homepages render the games, accessible navigation, and correct langua
 test("homepages include the new project section, hero links, and all eight stories without client JavaScript", async () => {
   for (const [route, current, explore, meet] of [["/", "Aktuelle Projekte", "Games entdecken", "Mehr über mich"], ["/en", "Current projects", "Explore games", "Learn about me"]]) {
     const html = await (await fetch(`${base}${route}`)).text();
+    const dom = new JSDOM(html);
+    const pageText = dom.window.document.querySelector("main").textContent;
+    dom.window.close();
     for (const text of [current, explore, meet, "Adeltuner", "WorldBuilder", "Gravity Puzzle", "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
-      assert.ok(html.includes(text), `${route}: ${text}`);
+      assert.ok(pageText.includes(text), `${route}: ${text}`);
     }
     assert.match(html, /href="#current-projects"/);
     assert.equal((html.match(/class="current-project-image"/g) ?? []).length, 6);

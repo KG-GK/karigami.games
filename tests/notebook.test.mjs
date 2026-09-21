@@ -38,7 +38,7 @@ async function swipe(dx, dy) {
     }
   });
 }
-function title() { return document.querySelector("#notebook-story-title .sr-only")?.textContent; }
+function title() { return document.querySelector("#notebook-story-title")?.textContent; }
 
 afterEach(async () => { window.getSelection().removeAllRanges(); if (root) await act(() => root.unmount()); root = undefined; });
 after(() => dom.window.close());

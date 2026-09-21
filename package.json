@@ -8,7 +8,7 @@
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --tsconfig tests/tsconfig.json --test tests/site.test.mjs tests/theme.test.mjs tests/notebook.test.mjs tests/playground.test.mjs tests/gallery.test.mjs tests/brand.test.mjs",
+    "test": "tsx --tsconfig tests/tsconfig.json --test tests/site.test.mjs tests/theme.test.mjs tests/notebook.test.mjs tests/playground.test.mjs tests/gallery.test.mjs tests/brand.test.mjs tests/wave-text.test.mjs",
     "test:theme": "node --test tests/theme.test.mjs",
     "test:notebook": "tsx --tsconfig tests/tsconfig.json --test tests/notebook.test.mjs",
     "test:playground": "tsx --tsconfig tests/tsconfig.json --test tests/playground.test.mjs",

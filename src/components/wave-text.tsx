@@ -2,13 +2,12 @@ import { Children, cloneElement, isValidElement, type ReactNode } from "react";
 
 function WaveText({ children }: { children: string }) {
   return <span className="wave-text" data-wave-text="">
-    <span className="sr-only">{children}</span>
-    <span aria-hidden="true">{Array.from(children).map((character, index) => /\s/.test(character) ? character : <span className="wave-glyph" key={index}>{character}</span>)}</span>
+    {Array.from(children).map((character, index) => /\s/.test(character) ? character : <span className="wave-glyph" key={index}>{character}</span>)}
   </span>;
 }
 
 // React owns these spans throughout their lifetime; the effect never rewrites text nodes.
-// Wrapping inline characters preserves natural line breaks and readable accessible text.
+// A single visible text layer keeps selection, copying, and accessible text in sync.
 export function withWaveText(children: ReactNode): ReactNode {
   return Children.map(children, (child) => {
     if (typeof child === "string" && child.trim()) return <WaveText>{child}</WaveText>;
