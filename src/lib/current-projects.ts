@@ -29,17 +29,6 @@ export function currentProjects(locale: Locale) {
       ],
     },
     {
-      id: "scorewriter",
-      name: "ScoreWriter",
-      category: de ? "KI & MUSIKKOMPOSITION" : "AI & MUSIC COMPOSITION",
-      description: de
-        ? "Ein experimentelles KI-Kompositionstool, das Komponierende im kreativen Prozess unterstützt, statt einfach nur fertige KI-Musik auszugeben."
-        : "An experimental AI composition tool designed to support composers in their creative process, rather than simply generate finished music.",
-      images: [
-        { src: "/assets/projects/scorewriter.png", width: 516, height: 359, alt: de ? "ScoreWriter-Schriftzug auf einem schwarz-weißen Punktraster." : "The ScoreWriter wordmark on a black-and-white halftone pattern." },
-      ],
-    },
-    {
       id: "gravity-puzzle",
       name: "Gravity Puzzle",
       category: de ? "PHYSIK & KNOBELN" : "PHYSICS & PUZZLES",

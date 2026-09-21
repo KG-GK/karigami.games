@@ -32,11 +32,11 @@ test("both homepages render the games, accessible navigation, and correct langua
 test("homepages include the new project section, hero links, and all eight stories without client JavaScript", async () => {
   for (const [route, current, explore, meet] of [["/", "Aktuelle Projekte", "Games entdecken", "Mehr über mich"], ["/en", "Current projects", "Explore games", "Learn about me"]]) {
     const html = await (await fetch(`${base}${route}`)).text();
-    for (const text of [current, explore, meet, "Adeltuner", "WorldBuilder", "ScoreWriter", "Gravity Puzzle", "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
+    for (const text of [current, explore, meet, "Adeltuner", "WorldBuilder", "Gravity Puzzle", "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
       assert.ok(html.includes(text), `${route}: ${text}`);
     }
     assert.match(html, /href="#current-projects"/);
-    assert.equal((html.match(/class="current-project-image"/g) ?? []).length, 7);
+    assert.equal((html.match(/class="current-project-image"/g) ?? []).length, 6);
     assert.match(html, /aria-haspopup="dialog"/);
     assert.doesNotMatch(html, /href="\/assets\/projects\//);
     assert.match(html, /class="notebook-cover|class="idea-note notebook-cover/);

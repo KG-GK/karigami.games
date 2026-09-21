@@ -122,7 +122,7 @@ test("Gravity Puzzle is complete pending release and its card has localized Germ
   const project = currentProjects("de").find(project => project.id === "gravity-puzzle");
   assert.equal(project.status, "Spiel fertig · Veröffentlichung offen");
   assert.match(project.description, /Playtests und Freigaben/);
-  await render("de", 3);
+  await render("de", 2);
   assert.equal(thumbnails().length, 1);
   assert.equal(thumbnails()[0].getAttribute("aria-label"), "Gravity Puzzle — Bild vergrößern 1");
   await click(thumbnails()[0]);
@@ -130,9 +130,9 @@ test("Gravity Puzzle is complete pending release and its card has localized Germ
   assert.equal(document.querySelector(".project-card-enlarged img").alt, project.images[0].alt);
 });
 
-test("all seven project screenshots exist with their declared dimensions", async () => {
+test("all six project screenshots exist with their declared dimensions", async () => {
   const images = currentProjects("en").flatMap(project => project.images);
-  assert.equal(images.length, 7);
+  assert.equal(images.length, 6);
   for (const image of images) {
     const actual = await sharp(`public${image.src}`).metadata();
     assert.equal(actual.width, image.width, image.src);

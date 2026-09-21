@@ -9,7 +9,6 @@ Originale Screenshots aus dem Chat:
 | `adeltuner-3.png` | Adeltuner | Türkisgrüne Wasserkugel und Zauberbuch | 1219 × 761 |
 | `adeltuner-4.png` | Adeltuner | Ausblick über den Wald auf Burg und Dorf | 2075 × 1166 |
 | `worldbuilder.png` | WorldBuilder | 3D-Dorfkarte mit Orten und Charakteren | 1144 × 883 |
-| `scorewriter.png` | ScoreWriter | Schriftzug auf Punktraster | 516 × 359 |
 | `gravity-puzzle.png` | Gravity Puzzle | Blöcke und Kugel auf quadratischem Spielfeld | 591 × 578 |
 
 Die Zuordnung, Bildgrößen, Alt-Texte und Beschreibungen stehen in `src/lib/current-projects.ts`. Bei abweichenden Originalgrößen dort Breite und Höhe aktualisieren. Kleine Vorschaubilder laden verzögert; beim Vergrößern auf derselben Seite wird eine größere Bildvariante geladen, die den vollständigen Bildinhalt bewahrt.
