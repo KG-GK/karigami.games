@@ -10,6 +10,10 @@ export function currentProjects(locale: Locale) {
       description: de
         ? "Ein wissensbasiertes 3D-Erkundungsspiel rund um die Simulation von Magie. Mein bisher größtes Projekt – und eines, das wohl noch ein paar Jahre brauchen wird, bis es das Licht der Welt erblickt."
         : "A knowledge-based 3D exploration game built around magic simulation. My largest project so far — and one that will probably take a few more years to see the light of day.",
+      links: [
+        { platform: "tiktok" as const, label: de ? "Devlog auf TikTok" : "Devlog on TikTok", href: "https://www.tiktok.com/@karigami67/video/7686905056851004704?is_from_webapp=1&sender_device=pc" },
+        { platform: "discord" as const, label: "Adeltuner Discord", href: "https://discord.gg/JTt5q7bXK" },
+      ],
       images: [
         { src: "/assets/projects/adeltuner-1.png", width: 1037, height: 723, alt: de ? "Ein magischer Stab erzeugt eine violette Kugel über einem sonnigen Waldweg in Adeltuner." : "A magic staff conjures a violet orb above a sunlit forest path in Adeltuner." },
         { src: "/assets/projects/adeltuner-2.png", width: 990, height: 767, alt: de ? "Feuer breitet sich in einem Baum aus; ein aufgeschlagenes Zauberbuch zeigt das Feuersymbol." : "Fire spreads through a tree as an open spellbook displays a fire symbol." },

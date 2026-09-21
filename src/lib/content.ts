@@ -8,11 +8,13 @@ export const site = {
   itch: "https://karigami.itch.io/",
   youtube: "https://www.youtube.com/@Karigami-i9l",
   instagram: "https://www.instagram.com/karigami_games/?utm_source=ig_web_button_share_sheet",
+  tiktok: "https://www.tiktok.com/@karigami67?is_from_webapp=1&sender_device=pc",
 };
 
 export const socialLinks = [
   { label: "YouTube", href: site.youtube },
   { label: "Instagram", href: site.instagram },
+  { label: "TikTok", href: site.tiktok },
   { label: "itch.io", href: site.itch },
 ] as const;
 
@@ -67,7 +69,7 @@ export const content = {
     fontNames: { default: "Original fonts restored.", pixel: "Pixel font activated.", serif: "Times New Roman activated." },
     themeNames: { paper: "Light theme activated.", ink: "Dark theme activated.", red: "Red theme activated." },
     strip: ["MADE OUT OF CURIOSITY", "BUILT FOR THE JOY OF PLAY", "A LITTLE DIFFERENT"],
-    gamesLabel: "01 / THE GAMES", gamesTitle: "Little worlds.\nTheir own rules.",
+    gamesLabel: "01 / THE GAMES", gamesTitle: "Little worlds\nfor the moments in between.",
     appStore: "View on App Store", googlePlay: "View on Google Play", offline: "Playable offline, too",
     pocketDescription: "Place troops, strategize and find ways to beat the pentagon army.",
     hammerDescription: "A rocket-powered hammer. Sometimes that’s all a game idea needs to take flight.",
@@ -82,8 +84,8 @@ export const content = {
     note: "My experiments\n& experiences", noteFooter: "One Page One Anecdote",
     noteHint: "click for more", noteCover: "The cover", noteOpen: "Open my project stories", noteCollection: "My experiments and experiences",
     notePrevious: "Previous page", noteNext: "Next page", noteBack: "Back to cover", noteStories: "8 little stories", notePlay: "Play", notePage: "Page", noteOf: "of",
-    contactLabel: "04 / CONTACT & SUPPORT", contactTitle: "Let’s hear from you.",
-    contactBody: "A question, an idea, or something in a game not quite working? Drop me a line.",
+    contactLabel: "04 / CONTACT & SUPPORT", contactTitle: "Hit me up!",
+    contactBody: "Business inquiry, random question, or something not quite working in one of my games? Drop me a line!",
     copy: "Copy email address", copied: "Address copied!", copyFailed: "Please copy the email address directly.",
     supportNote: "For support, please include the game, your device, OS version, and a short description of the issue.",
     privacy: "Privacy", imprint: "Imprint", privacyPath: "/en/privacy", imprintPath: "/en/imprint",

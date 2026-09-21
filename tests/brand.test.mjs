@@ -96,6 +96,7 @@ test("header links disclose all profiles and dismiss with Escape, outside clicks
   assert.deepEqual(links.map(link => link.href), [
     "https://www.youtube.com/@Karigami-i9l",
     "https://www.instagram.com/karigami_games/?utm_source=ig_web_button_share_sheet",
+    "https://www.tiktok.com/@karigami67?is_from_webapp=1&sender_device=pc",
     "https://karigami.itch.io/",
   ]);
   for (const link of links) {
@@ -123,7 +124,7 @@ test("both locales expose the same profiles in the mobile menu and close it afte
     const mobile = document.getElementById("mobile-navigation");
     const profiles = [...mobile.querySelectorAll('a[target="_blank"]')];
     assert.equal(mobile.hidden, false);
-    assert.equal(profiles.length, 3);
+    assert.equal(profiles.length, 4);
     assert.deepEqual(profiles.map(link => link.href), [...document.querySelectorAll("#social-links a")].map(link => link.href));
     await click(profiles[0]);
     assert.equal(mobile.hidden, true);
