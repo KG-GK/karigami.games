@@ -75,8 +75,8 @@ test("legal pages preserve identity and app disclosures and use the correct loca
     const html = await response.text();
     assert.match(html, new RegExp(`<html lang="${lang}"`));
     assert.match(html, /Kaan Gevrek/);
-    assert.match(html, /Daimlerstraße 6B/);
-    assert.match(html, /30165 Hannover/);
+    assert.match(html, /Am Pferdemarkt 9c/);
+    assert.match(html, /30853 Langenhagen/);
     assert.match(html, /name="robots" content="noindex, follow"/);
     assert.match(html, /id="section-1"/);
     if (route.includes("datenschutz") || route.includes("privacy")) {

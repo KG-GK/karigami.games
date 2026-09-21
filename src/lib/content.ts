@@ -80,7 +80,7 @@ export const content = {
     aboutLabel: "03 / ABOUT ME", aboutTitle: "Hey, I’m KG.",
     aboutLead: "Full Stack & Game Developer.",
     aboutBody: "Karigami is my space for the games I feel like making. Usually, they start as strange ideas that come to me in the shower. Or things I wish already existed. I particularly enjoy designing deep gameplay systems & experimenting with fun and unique mechanics.",
-    aboutEnd: "From the first idea to the finishing touches: I make games because I love games. Glad you’re here.",
+    aboutEnd: "I also build websites and software outside of gaming—but making games is definitely more fun!",
     note: "My experiments\n& experiences", noteFooter: "One Page One Anecdote",
     noteHint: "click for more", noteCover: "The cover", noteOpen: "Open my project stories", noteCollection: "My experiments and experiences",
     notePrevious: "Previous page", noteNext: "Next page", noteBack: "Back to cover", noteStories: "8 little stories", notePlay: "Play", notePage: "Page", noteOf: "of",
