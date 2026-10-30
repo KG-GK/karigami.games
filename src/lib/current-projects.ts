@@ -5,20 +5,20 @@ export function currentProjects(locale: Locale) {
   return [
     {
       id: "adeltuner",
-      name: "Adeltuner",
+      name: "Aveltuner",
       category: de ? "3D-EXPLORATION & MAGIE" : "3D EXPLORATION & MAGIC",
       description: de
         ? "Ein wissensbasiertes 3D-Erkundungsspiel rund um die Simulation von Magie. Mein bisher größtes Projekt – und eines, das wohl noch ein paar Jahre brauchen wird, bis es das Licht der Welt erblickt."
         : "A knowledge-based 3D exploration game built around magic simulation. My largest project so far — and one that will probably take a few more years to see the light of day.",
       links: [
         { platform: "tiktok" as const, label: de ? "Devlog auf TikTok" : "Devlog on TikTok", href: "https://www.tiktok.com/@karigami67/video/7686905056851004704?is_from_webapp=1&sender_device=pc" },
-        { platform: "discord" as const, label: "Adeltuner Discord", href: "https://discord.gg/JTt5q7bXK" },
+        { platform: "discord" as const, label: "Aveltuner Discord", href: "https://discord.gg/4tGY9YbGTS" },
       ],
       images: [
-        { src: "/assets/projects/adeltuner-1.png", width: 1037, height: 723, alt: de ? "Ein magischer Stab erzeugt eine violette Kugel über einem sonnigen Waldweg in Adeltuner." : "A magic staff conjures a violet orb above a sunlit forest path in Adeltuner." },
+        { src: "/assets/projects/adeltuner-1.png", width: 1037, height: 723, alt: de ? "Ein magischer Stab erzeugt eine violette Kugel über einem sonnigen Waldweg in Aveltuner." : "A magic staff conjures a violet orb above a sunlit forest path in Aveltuner." },
         { src: "/assets/projects/adeltuner-2.png", width: 990, height: 767, alt: de ? "Feuer breitet sich in einem Baum aus; ein aufgeschlagenes Zauberbuch zeigt das Feuersymbol." : "Fire spreads through a tree as an open spellbook displays a fire symbol." },
         { src: "/assets/projects/adeltuner-3.png", width: 1219, height: 761, alt: de ? "Ein Wasserzauber bildet eine große türkisgrüne Kugel vor dem magischen Stab." : "A water spell forms a large turquoise-green sphere in front of the magic staff." },
-        { src: "/assets/projects/adeltuner-4.png", width: 2075, height: 1166, alt: de ? "Blick über einen sonnigen Wald auf eine Burg und ein Dorf in Adeltuner." : "A view across a sunlit forest toward a castle and village in Adeltuner." },
+        { src: "/assets/projects/adeltuner-4.png", width: 2075, height: 1166, alt: de ? "Blick über einen sonnigen Wald auf eine Burg und ein Dorf in Aveltuner." : "A view across a sunlit forest toward a castle and village in Aveltuner." },
       ],
     },
     {
@@ -26,8 +26,8 @@ export function currentProjects(locale: Locale) {
       name: "WorldBuilder",
       category: "GAME DESIGN & WORLDBUILDING",
       description: de
-        ? "Ein Tool für Game Design und Worldbuilding. Ursprünglich für Adeltuner entwickelt, um die komplexen Gameplay- und Erzählsysteme zu planen und ihre Zusammenhänge im Blick zu behalten."
-        : "A tool for game design and worldbuilding. Originally created for Adeltuner to help plan its intricate gameplay and narrative systems, and keep track of how everything connects.",
+        ? "Ein Tool für Game Design und Worldbuilding. Ursprünglich für Aveltuner entwickelt, um die komplexen Gameplay- und Erzählsysteme zu planen und ihre Zusammenhänge im Blick zu behalten."
+        : "A tool for game design and worldbuilding. Originally created for Aveltuner to help plan its intricate gameplay and narrative systems, and keep track of how everything connects.",
       images: [
         { src: "/assets/projects/worldbuilder.png", width: 1144, height: 883, alt: de ? "WorldBuilder zeigt eine bearbeitbare 3D-Dorfkarte mit markierten Orten, Charakteren und Begegnungen." : "WorldBuilder shows an editable 3D village map with labeled locations, characters, and encounters." },
       ],

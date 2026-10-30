@@ -43,7 +43,7 @@ afterEach(async () => {
 });
 after(() => dom.window.close());
 
-test("each of the four Adeltuner cards enlarges on the same page with the correct image and accessible controls", async () => {
+test("each of the four Aveltuner cards enlarges on the same page with the correct image and accessible controls", async () => {
   await render();
   assert.equal(thumbnails().length, 4);
   assert.equal(document.querySelectorAll("a").length, 0);

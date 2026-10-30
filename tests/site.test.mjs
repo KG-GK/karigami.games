@@ -36,7 +36,7 @@ test("homepages include the new project section, hero links, and all eight stori
     const dom = new JSDOM(html);
     const pageText = dom.window.document.querySelector("main").textContent;
     dom.window.close();
-    for (const text of [current, explore, meet, "Adeltuner", "WorldBuilder", "Gravity Puzzle", "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
+    for (const text of [current, explore, meet, "Aveltuner", "WorldBuilder", "Gravity Puzzle", "03 / ABOUT ME", "Mice Rise", "CreatorStudio", "Dungeon Forge", "Bullet Rhapsody", "PocketWars", "BoostHammer", "AuraFarmer", "Your Crew is a useless bunch"]) {
       assert.ok(pageText.includes(text), `${route}: ${text}`);
     }
     assert.match(html, /href="#current-projects"/);

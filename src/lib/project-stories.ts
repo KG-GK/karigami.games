@@ -60,7 +60,7 @@ export function projectStories(locale: Locale): ProjectStory[] {
         : "This project was an experiment with MIDI files and instrument tracks that come in dynamically. Even the trumpet’s valves move to match the notes as you shoot!"),
       paragraph(de
         ? "Von einem fertigen Spiel ist es weit entfernt, aber als kleines Experiment hat es viel Spaß gemacht."
-        : "It’s a long way from a fully playable game, but it was a fun little experiment.")],
+        : "It’s a long way from a fully playable game, but it was a fun little experiment. The music is self-made too and possibly the only redeeming element of this pre-pre-pre-prototype XD")],
       playUrl: "https://karigami.itch.io/bullet-rhapsody",
     },
     {
