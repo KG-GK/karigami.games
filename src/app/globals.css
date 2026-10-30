@@ -218,8 +218,6 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
 .footer-bottom nav { display: flex; gap: 25px; }
 .footer-bottom nav a { padding-block: 10px; }
 .footer-bottom nav a:hover { color: var(--red); }
-.footer-location { display: flex; align-items: center; gap: 8px; }
-.footer-location .status-dot { width: 4px; height: 4px; background: var(--muted); }
 
 .legal-page { padding-block: 75px 110px; }
 .back-link { margin-bottom: 48px; }
@@ -331,7 +329,6 @@ h2 { margin-bottom: 0; font-size: clamp(36px, 4.6vw, 60px); font-weight: 650; le
   .contact-email > svg { width: 28px; height: 28px; }
   .footer-bottom { flex-wrap: wrap; font-size: 9px; }
   .footer-bottom nav { gap: 17px; }
-  .footer-location { display: none; }
   .legal-grid { grid-template-columns: 1fr; gap: 35px; }
   .legal-aside { position: static; }
   .legal-aside nav { display: flex; flex-wrap: wrap; gap: 12px 22px; font-size: 11px; }

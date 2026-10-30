@@ -8,6 +8,6 @@ export function Footer({ locale }: { locale: Locale }) {
   const t = content[locale];
   return withWaveText(<footer className="site-footer container">
     <div className="footer-top"><BrandLink locale={locale} /><a href={site.itch} target="_blank" rel="noopener noreferrer">itch.io <ArrowUpRight size={16} /></a></div>
-    <div className="footer-bottom"><span>© {new Date().getFullYear()} Karigami</span><nav aria-label={locale === "de" ? "Rechtliche Informationen" : "Legal information"}><Link href={t.imprintPath}>{t.imprint}</Link><Link href={t.privacyPath}>{t.privacy}</Link><a href={`mailto:${site.email}`}>{t.contactNav}</a></nav><span className="footer-location"><span className="status-dot" />Hannover, DE</span></div>
+    <div className="footer-bottom"><span>© {new Date().getFullYear()} Karigami</span><nav aria-label={locale === "de" ? "Rechtliche Informationen" : "Legal information"}><Link href={t.imprintPath}>{t.imprint}</Link><Link href={t.privacyPath}>{t.privacy}</Link><a href={`mailto:${site.email}`}>{t.contactNav}</a></nav></div>
   </footer>);
 }
