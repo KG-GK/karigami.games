@@ -15,10 +15,10 @@ export function siteMetadata(locale: Locale): Metadata {
     twitter: { card: "summary_large_image", title, description: t.intro, images: [`${site.url}/og.png`] },
     icons: {
       icon: [
-        { url: "/assets/karigami-favicon-32.png", sizes: "32x32", type: "image/png" },
-        { url: "/assets/karigami-favicon-192.png", sizes: "192x192", type: "image/png" },
+        { url: "/assets/karigami-favicon-alpha-eyes-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/assets/karigami-favicon-alpha-eyes-192.png", sizes: "192x192", type: "image/png" },
       ],
-      apple: [{ url: "/assets/karigami-apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+      apple: [{ url: "/assets/karigami-apple-touch-icon-alpha-eyes.png", sizes: "180x180", type: "image/png" }],
     },
   };
 }
